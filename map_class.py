@@ -6,13 +6,14 @@ import matplotlib.pyplot as plt
 
 class MapClass:
 
-    def __init__(self, length, width, node_dimension, move_closer_coef, number_iterations):
+    def __init__(self, length, width, node_dimension, learning_rate, number_iterations, matrix_graph_weights):
         # print("dupa")
         self.length = length
         self.width = width
         self.node_dimenstion = node_dimension
-        self.move_closer_coef = move_closer_coef
+        self.learning_rate = learning_rate
         self.number_iterations = number_iterations
+        self.matrix_graph_weights = matrix_graph_weights
 
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
         self.locations = self.initialize_locations(self.weights)
@@ -50,14 +51,12 @@ class MapClass:
 
     def move_closer(self, bmu_index, tensor_row_data):
 
-        difference = tensor_row_data - self.weights
-        change = self.impact_matrix[bmu_index].view(self.length * self.width, -1) * difference
-        self.weights = self.weights + (change * self.move_closer_coef)
+        amount_vertecies = self.matrix_graph_weights.shape[0]
 
-        # change = self.weights[bmu_index] - tensor_row_data
-        #
-        #
-        # self.weights[bmu_index].add_(-(change * self.move_closer_coef))
+        difference = tensor_row_data - self.weights
+        change = difference * self.matrix_graph_weights[bmu_index].view(amount_vertecies, 1)
+        self.weights = self.weights + (change * self.learning_rate)
+
 
     def initialize_locations(self, weights):
         locations = []

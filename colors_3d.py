@@ -44,14 +44,23 @@ color_names = \
      'cyan', 'violet', 'yellow', 'white',
      'darkgrey', 'mediumgrey', 'lightgrey']
 
-#buildings data
-building_sizes = [[0.1, 0.3], [0.1, 0.2], [1., 1.], [0.125, 0.2], [0.529, 0.12], [1.0, 0.3], [0.33, 0.3], 
-                  [0.4, 0.4], [0.67, 0.3], [.33, 0.7], [.5, 0.1]]
-#     torch.rand((10))
 
-#gray colors data
-gray_colors = [[0.1], [0.], [1.], [0.125], [0.529], [1.0], [0.33], [0.4], [0.67], [.33], [.5]]
-#     torch.rand((10))
+
+amount_vertecies = 25
+matrix_graph_weights = torch.zeros(amount_vertecies, amount_vertecies)
+for i in range(amount_vertecies):
+    tensor_vertecies[i][i] = 1
+
+
+def add_edge(length, width, weight):
+    if length < matrix_graph_weights.shape[0] and width < matrix_graph_weights.shape[0]:
+        matrix_graph_weights[length][width] = weight
+        matrix_graph_weights[width][length] = weight
+
+
+edges = [[0,1,0.1], [0,4,0.6], [2,3,0.15], [4,5,0.2]]
+for edge in edges:
+    add_edge(edge[0], edge[1], edge[2])
 
 # +
 # Network configuration
@@ -59,11 +68,11 @@ gray_colors = [[0.1], [0.], [1.], [0.125], [0.529], [1.0], [0.33], [0.4], [0.67]
 data = rgb_colors
 batch_size = 4
 
-length = 10
-width = 10
+length = 5
+width = 5
 number_iterations = 20
 
-move_closer_coef = 0.1
+learning_rate = 1
 # + {}
 trainloader = ""
 
@@ -115,10 +124,12 @@ def visualize_rgb(map_):
 
 training, dim, number_rows_data = load_data(data)
 
-map1 = MapClass(length, width, dim, move_closer_coef, number_iterations)
+map1 = MapClass(length, width, dim, learning_rate, number_iterations, matrix_graph_weights)
 
 plt.rcParams['figure.dpi'] = 150
 large_cycle_rgb(map1, training)
+
+map1.weights
 
 map1.weights
 
