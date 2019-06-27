@@ -61,9 +61,9 @@ batch_size = 4
 
 length = 10
 width = 10
-number_iterations = 1
+number_iterations = 20
 
-move_closer_coef = 0
+move_closer_coef = 0.1
 # + {}
 trainloader = ""
 
@@ -117,6 +117,7 @@ training, dim, number_rows_data = load_data(data)
 
 map1 = MapClass(length, width, dim, move_closer_coef, number_iterations)
 
+plt.rcParams['figure.dpi'] = 150
 large_cycle_rgb(map1, training)
 
 map1.weights

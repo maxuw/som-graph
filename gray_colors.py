@@ -23,11 +23,6 @@ from map_class import MapClass
 
 
 
-#buildings data
-building_sizes = [[0.1, 0.3], [0.1, 0.2], [1., 1.], [0.125, 0.2], [0.529, 0.12], [1.0, 0.3], [0.33, 0.3], 
-                  [0.4, 0.4], [0.67, 0.3], [.33, 0.7], [.5, 0.1]]
-#     torch.rand((10))
-
 #gray colors data
 gray_colors = [[0.1], [0.], [1.], [0.125], [0.529], [1.0], [0.33], [0.4], [0.67], [.33], [.5]]
 #     torch.rand((10))
@@ -35,14 +30,15 @@ gray_colors = [[0.1], [0.], [1.], [0.125], [0.529], [1.0], [0.33], [0.4], [0.67]
 # +
 # Network configuration
 
-data = gray_colors
+data = building_sizes
 batch_size = 4
 
-length = 2
-width = 2
+length = 4
+width = 3
 number_iterations = 100
 
 move_closer_coef = 0.5
+iterations = 100
 # + {}
 trainloader = ""
 
@@ -69,11 +65,13 @@ def large_cycle(map_, training_data):
 
 training, dim, number_rows_data = load_data(data)
 
-map1 = MapClass(length, width, dim, move_closer_coef)
+map1 = MapClass(length, width, dim, move_closer_coef, number_iterations)
 
 map1.weights_to_map()
 
 map1.step(training, verbose=True)
+
+map1.cycle(training, verbose=True)
 
 map1.classify_all(map1.convert_data_tensor(data))
 
