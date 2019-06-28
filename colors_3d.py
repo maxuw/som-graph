@@ -124,9 +124,9 @@ batch_size = 4
 
 length = 10
 width = 10
-number_iterations = 1
+number_iterations = 100
 
-learning_rate = 0.5
+learning_rate = 0.01
 # + {}
 trainloader = ""
 
