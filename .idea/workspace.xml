@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/colors_3d-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/colors_3d-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/colors_3d.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/colors_3d.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/colors_3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/colors_3d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_class.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-93">
-              <caret line="68" selection-start-line="68" selection-end-line="84" selection-end-column="48" />
+            <state relative-caret-position="207">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -156,12 +154,12 @@
       <option name="presentableId" value="Default" />
       <updated>1561414669115</updated>
       <workItem from="1561414670339" duration="21195000" />
-      <workItem from="1561585533260" duration="15634000" />
+      <workItem from="1561585533260" duration="15685000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36829000" />
+    <option name="totallyTimeSpent" value="36880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="258" y="56" width="1494" height="955" extended-state="0" />
@@ -218,8 +216,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="68" selection-start-line="68" selection-end-line="84" selection-end-column="48" />
+        <state relative-caret-position="207">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>

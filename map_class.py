@@ -17,8 +17,6 @@ class MapClass:
 
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
         self.locations = self.initialize_locations(self.weights)
-        self.distance_matrix = self.create_distance_matrix(self.locations, self.length, self.width)
-        self.impact_matrix = self.calculate_impact_matrix(self.distance_matrix)
 
         # self.initialize_location(self.length, self.width, self.node_dimenstion)
 
@@ -66,42 +64,6 @@ class MapClass:
             # print(location)
         return locations
 
-    def create_distance_matrix(self, locations, length, width):
-        distance_matrix = torch.zeros(length * width, length * width)
-
-        for i in range(len(locations)):
-            for j in range(i, len(locations)):
-                if i != j:
-                    tens1 = torch.tensor(locations[i], dtype=torch.float)
-                    tens2 = torch.tensor(locations[j], dtype=torch.float)
-
-                    minus = tens1 - tens2
-                    minus_power = minus.pow(2)
-                    sum_minus_power = torch.sum(minus_power, dim=0)
-
-                    sqrt = torch.sqrt(sum_minus_power)
-
-                    distance_matrix[i][j] = sqrt
-                    distance_matrix[j][i] = sqrt
-
-        return distance_matrix
-
-    def calculate_impact_matrix(self, distance_matrix):
-        dist = Normal(torch.tensor([0.0]), torch.tensor([2.5]))
-
-        return (dist.cdf(-distance_matrix)) * 2
-
-    def cycle(self, training_data, verbose=False):
-        for batch in training_data:
-            t_batch = torch.stack([x for x in batch]).float().t()
-            for row in t_batch:
-                # print(row)
-                i_bmu = self.find_bmu(row, verbose).item()
-                self.move_closer(i_bmu, row)
-
-        if verbose == True:
-            self.basic_visualization()
-            # print(weights_display(weights_.weights))
 
     def step(self, training_data, verbose=False):
         i = 0
