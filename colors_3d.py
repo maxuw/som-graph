@@ -22,6 +22,7 @@ import matplotlib.pyplot as plt
 import random
 
 from map_class import MapClass
+from graph_class import Graph
 
 #Training inputs for RGBcolors
 rgb_colors = [[0., 0., 0.],
@@ -55,17 +56,12 @@ color_names = \
 amount_vertecies = 100
 percent_edges = 0.5
 
-from graph_class import Graph
+
 
 graph1 = Graph()
-
 matrix1 = graph1.create_matrix(amount_vertecies)
-
 edges1 = graph1.generate_edges(amount_vertecies, percent_edges)
-
 matrix1 = graph1.add_edges(matrix1, edges1)
-
-matrix1
 
 
 
@@ -79,25 +75,19 @@ batch_size = 2
 length = 10
 width = 10
 number_iterations = 100
+shuffle = True
 
 learning_rate = 0.01
-# + {}
-trainloader = ""
-
-def load_data(data, batch_size=4):
-    dim = len(data[0])
-    number_rows_data = len(data)
-    
-    trainloader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=True)
-    
-    return trainloader, dim, number_rows_data
 # -
 
 
+map1 = MapClass(data, length, width, learning_rate, number_iterations, matrix1, data_lables, batch_size, shuffle)
 
-training, dim, number_rows_data = load_data(data, batch_size)
-
-map1 = MapClass(data, length, width, dim, learning_rate, number_iterations, matrix1, data_lables)
+# +
+# training, dim, number_rows_data = load_data(data, batch_size)
+# -
 
 plt.rcParams['figure.dpi'] = 150
-map1.large_cycle(training, draw_every_epoch=10, rgb=True)
+map1.large_cycle(draw_every_epoch=10, rgb=True)
+
+

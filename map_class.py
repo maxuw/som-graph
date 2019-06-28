@@ -1,4 +1,5 @@
 import torch
+import torch.utils.data
 # from torch.nn.modules.distance import PairwiseDistance
 from torch.distributions.normal import Normal
 import matplotlib.pyplot as plt
@@ -6,17 +7,20 @@ import matplotlib.pyplot as plt
 
 class MapClass:
 
-    def __init__(self, data, length, width, node_dimension, learning_rate, number_iterations, matrix_graph_weights, data_lables = None):
+    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, data_lables =None, batch_size=4, shuffle=True, ):
         # print("dupa")
         self.length = length
         self.width = width
-        self.node_dimenstion = node_dimension
+        # self.node_dimenstion = node_dimension
         self.learning_rate = learning_rate
         self.number_iterations = number_iterations
         self.matrix_graph_weights = matrix_graph_weights
         self.classification = None
-
         self.data = data
+        # training, dim, number_rows_data
+        self.trainloader, self.node_dimenstion, self.number_rows_data = self.load_data(self.data, batch_size=batch_size, shuffle=shuffle)
+
+
         self.data_lables = data_lables
 
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
@@ -94,14 +98,14 @@ class MapClass:
 
     #     print(map_display(map_.map))
 
-    def large_cycle(self, training_data, verbose=False, draw_every_epoch=10, rgb=False):
+    def large_cycle(self, verbose=False, draw_every_epoch=10, rgb=False):
         if rgb: self.visualize_rgb()
         #     print(map_display(map_.map))
         for i in range(self.number_iterations):
-            self.cycle(training_data, verbose)
-            if draw_every_epoch != False:
+            self.cycle(self.trainloader, verbose)
+            if draw_every_epoch != False and rgb:
                 if i % draw_every_epoch == 0: self.visualize_rgb()
-        self.visualize_rgb()
+        if rgb: self.visualize_rgb()
 
 
     def initialize_locations(self, weights):
@@ -165,3 +169,13 @@ class MapClass:
             list_data_tensor.append(row_tensor)
 
         return list_data_tensor
+
+    trainloader = ""
+
+    def load_data(self, data, batch_size, shuffle):
+        dim = len(data[0])
+        number_rows_data = len(data)
+
+        trainloader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=True)
+
+        return trainloader, dim, number_rows_data

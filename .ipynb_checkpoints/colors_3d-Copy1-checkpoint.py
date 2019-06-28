@@ -14,6 +14,7 @@
 # ---
 
 import torch
+import torch.utils.data
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,15 +25,27 @@ from map_class import MapClass
 from graph_class import Graph
 
 #Training inputs for RGBcolors
-gray_colors = [[0.1], [0.], [1.], [0.125], [0.529], [1.0], [0.33], [0.4], [0.67], [.33], [.5]]
+rgb_colors = [[0., 0., 0.],
+      [0., 0., 1.],
+      [0., 0., 0.5],
+      [0.125, 0.529, 1.0],
+      [0.33, 0.4, 0.67],
+      [0.6, 0.5, 1.0],
+      [0., 1., 0.],
+      [1., 0., 0.],
+      [0., 1., 1.],
+      [1., 0., 1.],
+      [1., 1., 0.],
+      [1., 1., 1.],
+      [.33, .33, .33],
+      [.5, .5, .5],
+      [.66, .66, .66]]
 
-# +
-# color_names = \
-#     ['black', 'blue', 'darkblue', 'skyblue',
-#      'greyblue', 'lilac', 'green', 'red',
-#      'cyan', 'violet', 'yellow', 'white',
-#      'darkgrey', 'mediumgrey', 'lightgrey']
-# -
+color_names = \
+    ['black', 'blue', 'darkblue', 'skyblue',
+     'greyblue', 'lilac', 'green', 'red',
+     'cyan', 'violet', 'yellow', 'white',
+     'darkgrey', 'mediumgrey', 'lightgrey']
 
 
 
@@ -58,8 +71,8 @@ matrix1 = graph1.add_edges(matrix1, edges1)
 # +
 # Network configuration
 
-data = gray_colors
-# data_lables = color_names
+data = rgb_colors
+data_lables = color_names
 batch_size = 2
 
 length = 10
@@ -82,14 +95,13 @@ learning_rate = 0.01
 
 
 
-map1 = MapClass(data, length, width, learning_rate, number_iterations, matrix1, batch_size=batch_size, shuffle=shuffle)
+map1 = MapClass(data, length, width, learning_rate, number_iterations, matrix1, data_lables, batch_size, shuffle)
 
+# +
 # training, dim, number_rows_data = load_data(data, batch_size)
-map1.basic_visualization()
+# -
 
 plt.rcParams['figure.dpi'] = 150
-map1.large_cycle(draw_every_epoch=10, rgb=False)
-
-map1.basic_visualization()
+map1.large_cycle(draw_every_epoch=10, rgb=True)
 
 
