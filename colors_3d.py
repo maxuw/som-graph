@@ -74,7 +74,7 @@ matrix1
 
 data = rgb_colors
 data_lables = color_names
-batch_size = 10
+batch_size = 2
 
 length = 10
 width = 10
@@ -101,61 +101,3 @@ map1 = MapClass(data, length, width, dim, learning_rate, number_iterations, matr
 
 plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(training, draw_every_epoch=10, rgb=True)
-
-# +
-# plt.rcParams['figure.dpi'] = 150
-# large_cycle_rgb(map1, training, verbose=True)
-
-# +
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.animation import FuncAnimation
-plt.style.use('seaborn-pastel')
-
-
-fig = plt.figure()
-ax = plt.axes(xlim=(0, 4), ylim=(-2, 2))
-line, = ax.plot([], [], lw=3)
-
-def init():
-    line.set_data([], [])
-    return line,
-def animate(i):
-    x = np.linspace(0, 4, 1000)
-    y = np.sin(2 * np.pi * (x - 0.01 * i))
-    line.set_data(x, y)
-    return line,
-
-anim = FuncAnimation(fig, animate, init_func=init,
-frames=200, interval=20, blit=True)
-# -
-
-visualize_rgb(map1.weights)
-
-# +
-
-classification
-
-# +
-
-    
-    
-
-# +
-tens_try = map1.weights.view(length, width, 3)
-plt.imshow(tens_try)
-
-classification = map1.classify_all(map1.convert_data_tensor(data))
-for i in range(len(classification)):
-    loc_tuple = map1.get_location(classification[i])
-    plt.text(loc_tuple[1], loc_tuple[0], color_names[i], ha='center', va='center',
-         bbox=dict(facecolor='white', alpha=0.5, lw=0))
-z
-# plt.text(0, 1, color_names[1], ha='center', va='center',
-#          bbox=dict(facecolor='white', alpha=0.5, lw=0))
-plt.show()
-# -
-
-visualize_rgb(map1)
-
-
