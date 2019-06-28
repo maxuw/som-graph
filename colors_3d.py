@@ -112,14 +112,13 @@ matrix1 = add_edges(matrix1, edges1)
 # generate_edges(10,0.5)
 # -
 
-edges = [[0,1,0.1], [0,3,0.4], [0,20,0.4], [0,30,0.7], [1,3,0.2], [0,4,0.6], [2,3,0.15], [4,5,0.2]]
-
 
 
 # +
 # Network configuration
 
 data = rgb_colors
+data_lables = color_names
 batch_size = 4
 
 length = 10
@@ -150,11 +149,12 @@ def large_cycle(map_, training_data):
     print(map_display(map_.map))
 
 
-def large_cycle_rgb(map_, training_data):
+def large_cycle_rgb(map_, training_data, verbose=False):
     visualize_rgb(map_)
 #     print(map_display(map_.map))
     for i in range(number_iterations):
-        map_.cycle(training_data)
+        map_.cycle(training_data, verbose)
+        if verbose==True: visualize_rgb(map_)
     visualize_rgb(map_)
 #     print(map_display(map_.map))
 
@@ -178,17 +178,42 @@ def visualize_rgb(map_):
 
 training, dim, number_rows_data = load_data(data)
 
-map1 = MapClass(length, width, dim, learning_rate, number_iterations, matrix1)
+map1 = MapClass(data, length, width, dim, learning_rate, number_iterations, matrix1, data_lables)
+
+plt.rcParams['figure.dpi'] = 150
+map1.large_cycle(training, draw_every_epoch=10, rgb=True)
+
+# +
+# plt.rcParams['figure.dpi'] = 150
+# large_cycle_rgb(map1, training, verbose=True)
+# -
 
 plt.rcParams['figure.dpi'] = 150
 large_cycle_rgb(map1, training)
 
-plt.rcParams['figure.dpi'] = 150
-large_cycle_rgb(map1, training)
+# +
+import numpy as np
+from matplotlib import pyplot as plt
+from matplotlib.animation import FuncAnimation
+plt.style.use('seaborn-pastel')
 
-map1.cycle(training)
 
+fig = plt.figure()
+ax = plt.axes(xlim=(0, 4), ylim=(-2, 2))
+line, = ax.plot([], [], lw=3)
 
+def init():
+    line.set_data([], [])
+    return line,
+def animate(i):
+    x = np.linspace(0, 4, 1000)
+    y = np.sin(2 * np.pi * (x - 0.01 * i))
+    line.set_data(x, y)
+    return line,
+
+anim = FuncAnimation(fig, animate, init_func=init,
+frames=200, interval=20, blit=True)
+# -
 
 visualize_rgb(map1.weights)
 

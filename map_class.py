@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 class MapClass:
 
-    def __init__(self, length, width, node_dimension, learning_rate, number_iterations, matrix_graph_weights):
+    def __init__(self, data, length, width, node_dimension, learning_rate, number_iterations, matrix_graph_weights, data_lables = None):
         # print("dupa")
         self.length = length
         self.width = width
@@ -14,6 +14,10 @@ class MapClass:
         self.learning_rate = learning_rate
         self.number_iterations = number_iterations
         self.matrix_graph_weights = matrix_graph_weights
+        self.classification = None
+
+        self.data = data
+        self.data_lables = data_lables
 
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
         self.locations = self.initialize_locations(self.weights)
@@ -44,7 +48,7 @@ class MapClass:
         summed_rows = (torch.sum(calc, dim=1))
         # print(summed_rows)
         topk = torch.topk(summed_rows, 1, dim=0, largest=False)
-        if verbose: print(topk[1])
+        # if verbose: print(topk[1])
         return topk[1]
 
     def move_closer(self, bmu_index, tensor_row_data):
@@ -53,7 +57,51 @@ class MapClass:
 
         difference = tensor_row_data - self.weights
         change = difference * self.matrix_graph_weights[bmu_index].view(amount_vertecies, 1)
-        self.weights = self.weights + (change * self.learning_rate)
+        row_change = (change * self.learning_rate)
+        return row_change
+
+    def cycle(self, training_data, verbose=False):
+        for batch in training_data:
+            t_batch = torch.stack([x for x in batch]).float().t()
+            batch_change = 0
+            for row in t_batch:
+                # print(row)
+                i_bmu = self.find_bmu(row, verbose).item()
+                sample_change = self.move_closer(i_bmu, row)
+                batch_change += sample_change
+                # if verbose == True: print("this sample in batch: ", sample_change[0:3])
+
+            self.weights += batch_change
+            # if verbose == True: print("this batch change: ", batch_change[0:3])
+
+        # if verbose == True:
+        #     self.basic_visualization()
+            # print(weights_display(weights_.weights))
+
+    def visualize_rgb(self):
+        tens_try = self.weights.view(self.length, self.width, 3)
+        plt.imshow(tens_try)
+
+        self.classification = self.classify_all(self.convert_data_tensor(self.data))
+        for i in range(len(self.classification)):
+            loc_tuple = self.get_location(self.classification[i])
+            plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+            bbox=dict(facecolor='white', alpha=0.5, lw=0))
+
+    # plt.text(0, 1, color_names[1], ha='center', va='center',
+    #          bbox=dict(facecolor='white', alpha=0.5, lw=0))
+        plt.show()
+
+    #     print(map_display(map_.map))
+
+    def large_cycle(self, training_data, verbose=False, draw_every_epoch=10, rgb=False):
+        if rgb: self.visualize_rgb()
+        #     print(map_display(map_.map))
+        for i in range(self.number_iterations):
+            self.cycle(training_data, verbose)
+            if draw_every_epoch != False:
+                if i % draw_every_epoch == 0: self.visualize_rgb()
+        self.visualize_rgb()
 
 
     def initialize_locations(self, weights):
@@ -64,19 +112,6 @@ class MapClass:
             # print(location)
         return locations
 
-
-
-    def cycle(self, training_data, verbose=False):
-        for batch in training_data:
-            t_batch = torch.stack([x for x in batch]).float().t()
-            for row in t_batch:
-                # print(row)
-                i_bmu = self.find_bmu(row, verbose).item()
-                self.move_closer(i_bmu, row)
-
-        if verbose == True:
-            self.basic_visualization()
-            # print(weights_display(weights_.weights))
 
     def step(self, training_data, verbose=False):
         i = 0
