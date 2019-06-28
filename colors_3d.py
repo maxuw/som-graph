@@ -188,10 +188,6 @@ large_cycle_rgb(map1, training)
 
 map1.cycle(training)
 
-map1.distance_matrix
-
-map1.impact_matrix
-
 
 
 visualize_rgb(map1.weights)
