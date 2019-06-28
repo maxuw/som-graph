@@ -56,7 +56,7 @@ def create_matrix(amount_vertecies):
 
 
 def add_edge(matrix, length, width, weight):
-    if length < matrix_graph_weights.shape[0] and width < matrix_graph_weights.shape[0]:
+    if length < matrix.shape[0] and width < matrix.shape[0]:
         matrix[length][width] = weight
         matrix[width][length] = weight
         

@@ -65,6 +65,19 @@ class MapClass:
         return locations
 
 
+
+    def cycle(self, training_data, verbose=False):
+        for batch in training_data:
+            t_batch = torch.stack([x for x in batch]).float().t()
+            for row in t_batch:
+                # print(row)
+                i_bmu = self.find_bmu(row, verbose).item()
+                self.move_closer(i_bmu, row)
+
+        if verbose == True:
+            self.basic_visualization()
+            # print(weights_display(weights_.weights))
+
     def step(self, training_data, verbose=False):
         i = 0
         for batch in training_data:
