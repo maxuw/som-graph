@@ -19,6 +19,8 @@ import torch.utils.data
 import numpy as np
 import matplotlib.pyplot as plt
 
+import random
+
 from map_class import MapClass
 
 #Training inputs for RGBcolors
@@ -45,22 +47,74 @@ color_names = \
      'darkgrey', 'mediumgrey', 'lightgrey']
 
 
+def create_matrix(amount_vertecies):
+    matrix_graph_weights = torch.zeros(amount_vertecies, amount_vertecies)
+    for i in range(amount_vertecies):
+        matrix_graph_weights[i][i] = 1
+        
+    return matrix_graph_weights
 
-amount_vertecies = 25
-matrix_graph_weights = torch.zeros(amount_vertecies, amount_vertecies)
-for i in range(amount_vertecies):
-    tensor_vertecies[i][i] = 1
 
-
-def add_edge(length, width, weight):
+def add_edge(matrix, length, width, weight):
     if length < matrix_graph_weights.shape[0] and width < matrix_graph_weights.shape[0]:
-        matrix_graph_weights[length][width] = weight
-        matrix_graph_weights[width][length] = weight
+        matrix[length][width] = weight
+        matrix[width][length] = weight
+        
+    return matrix
 
 
-edges = [[0,1,0.1], [0,4,0.6], [2,3,0.15], [4,5,0.2]]
-for edge in edges:
-    add_edge(edge[0], edge[1], edge[2])
+def generate_edges(amount_vertecies, percent_edges):
+    amount_edges = int((amount_vertecies**2) * percent_edges)
+    print(amount_edges)
+    edges = []
+    for i in range(amount_edges):
+        edge = [random.randint(0, amount_vertecies-1), random.randint(0, amount_vertecies-1), random.random()]
+        edges.append(edge)
+    
+    return edges
+
+
+def add_edges(matrix, edges):
+    for edge in edges:
+        matrix = add_edge(matrix, edge[0], edge[1], edge[2])
+        
+    return matrix
+
+
+
+# +
+# Graph setup
+# -
+
+amount_vertecies = 100
+percent_edges = 0.5
+
+# +
+
+matrix1 = create_matrix(amount_vertecies)
+
+# +
+# matrix1
+# -
+
+edges1 = generate_edges(amount_vertecies, percent_edges)
+
+# +
+# edges1
+# -
+
+matrix1 = add_edges(matrix1, edges1)
+
+# +
+# matrix1
+
+# +
+# generate_edges(10,0.5)
+# -
+
+edges = [[0,1,0.1], [0,3,0.4], [0,20,0.4], [0,30,0.7], [1,3,0.2], [0,4,0.6], [2,3,0.15], [4,5,0.2]]
+
+
 
 # +
 # Network configuration
@@ -68,11 +122,11 @@ for edge in edges:
 data = rgb_colors
 batch_size = 4
 
-length = 5
-width = 5
-number_iterations = 20
+length = 10
+width = 10
+number_iterations = 1
 
-learning_rate = 1
+learning_rate = 0.5
 # + {}
 trainloader = ""
 
@@ -124,14 +178,13 @@ def visualize_rgb(map_):
 
 training, dim, number_rows_data = load_data(data)
 
-map1 = MapClass(length, width, dim, learning_rate, number_iterations, matrix_graph_weights)
+map1 = MapClass(length, width, dim, learning_rate, number_iterations, matrix1)
 
 plt.rcParams['figure.dpi'] = 150
 large_cycle_rgb(map1, training)
 
-map1.weights
-
-map1.weights
+plt.rcParams['figure.dpi'] = 150
+large_cycle_rgb(map1, training)
 
 map1.cycle(training)
 
