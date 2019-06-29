@@ -67,9 +67,13 @@ class MapClass:
     def cycle(self, training_data, verbose=False):
         for batch in training_data:
             t_batch = torch.stack([x for x in batch]).float().t()
+            print("batch", batch)
+            print(t_batch.shape)
+            print("t_batch", t_batch)
             batch_change = 0
-            for row in t_batch:
-                # print(row)
+            for row in batch:
+                print(row.shape)
+                print(row)
                 i_bmu = self.find_bmu(row, verbose).item()
                 sample_change = self.move_closer(i_bmu, row)
                 batch_change += sample_change
@@ -170,12 +174,13 @@ class MapClass:
 
         return list_data_tensor
 
-    trainloader = ""
 
     def load_data(self, data, batch_size, shuffle):
         dim = len(data[0])
+        print(dim)
         number_rows_data = len(data)
+        print(number_rows_data)
 
-        trainloader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=True)
+        trainloader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=shuffle)
 
         return trainloader, dim, number_rows_data
