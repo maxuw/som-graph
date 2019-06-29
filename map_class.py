@@ -9,6 +9,10 @@ class MapClass:
 
     def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, data_lables=None, batch_size=4, shuffle=True):
         # print("dupa")
+
+        if len(matrix_graph_weights) != length*width:
+            raise NameError('matrix_graph_weights has to equal length*width')
+
         self.length = length
         self.width = width
         # self.node_dimenstion = node_dimension
@@ -146,9 +150,8 @@ class MapClass:
                 self.map_view_for_coding()
 
     def calculate_impact_matrix(self, distance_matrix):
-        dist = Normal(torch.tensor([0.0]), torch.tensor([2.5]))
-
-        return (dist.cdf(-distance_matrix)) * 2
+        dist = Normal(torch.tensor([-0.17]), torch.tensor([0.02]))
+        return (dist.cdf(-distance_matrix))
 
 
     def basic_visualization(self):
