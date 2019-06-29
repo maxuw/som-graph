@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 class MapClass:
 
-    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, data_lables =None, batch_size=4, shuffle=True, ):
+    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, data_lables=None, batch_size=4, shuffle=True):
         # print("dupa")
         self.length = length
         self.width = width
@@ -16,9 +16,12 @@ class MapClass:
         self.number_iterations = number_iterations
         self.matrix_graph_weights = matrix_graph_weights
         self.classification = None
+
+        self.batch_size = batch_size
+        self.shuffle = shuffle
         self.data = data
         # training, dim, number_rows_data
-        self.trainloader, self.node_dimenstion, self.number_rows_data = self.load_data(self.data, batch_size=batch_size, shuffle=shuffle)
+        self.trainloader, self.node_dimenstion, self.number_rows_data = self.load_data(self.data, batch_size=self.batch_size, shuffle=self.shuffle)
 
 
         self.data_lables = data_lables
@@ -67,13 +70,13 @@ class MapClass:
     def cycle(self, training_data, verbose=False):
         for batch in training_data:
             t_batch = torch.stack([x for x in batch]).float().t()
-            print("batch", batch)
-            print(t_batch.shape)
-            print("t_batch", t_batch)
+            # print("batch", batch)
+            # print(t_batch.shape)
+            # print("t_batch", t_batch)
             batch_change = 0
-            for row in batch:
-                print(row.shape)
-                print(row)
+            for row in t_batch:
+                # print(row.shape)
+                # print(row)
                 i_bmu = self.find_bmu(row, verbose).item()
                 sample_change = self.move_closer(i_bmu, row)
                 batch_change += sample_change

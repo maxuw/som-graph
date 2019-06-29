@@ -73,14 +73,17 @@ batch_size = 2
 
 length = 10
 width = 10
-number_iterations = 100
+number_epochs = 100
 shuffle = True
 
 learning_rate = 0.01
 # -
 
 
-map1 = MapClass(data, length, width, learning_rate, number_iterations, matrix1, data_lables, batch_size, shuffle)
+map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, data_lables, batch_size, shuffle)
+
+# +
+# map1.weights
 
 # +
 # training, dim, number_rows_data = load_data(data, batch_size)
@@ -88,5 +91,7 @@ map1 = MapClass(data, length, width, learning_rate, number_iterations, matrix1, 
 
 plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=10, rgb=True)
+
+map1.cycle()
 
 
