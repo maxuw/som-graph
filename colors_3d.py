@@ -52,7 +52,7 @@ color_names = \
 # Graph setup
 # -
 
-amount_vertecies = 100
+amount_vertecies = 5
 percent_edges = 0.5
 
 
@@ -62,7 +62,9 @@ matrix1 = graph1.create_matrix(amount_vertecies)
 edges1 = graph1.generate_edges(amount_vertecies, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
 
+matrix1
 
+map1.calculate_impact_matrix(matrix1)
 
 # +
 # Network configuration

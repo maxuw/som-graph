@@ -29,6 +29,9 @@ class MapClass:
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
         self.locations = self.initialize_locations(self.weights)
 
+        self.impact_matrix = self.calculate_impact_matrix(self.matrix_graph_weights)
+
+
         # self.initialize_location(self.length, self.width, self.node_dimenstion)
 
     def initialize_weights(self, length, width, dimention):
@@ -63,7 +66,7 @@ class MapClass:
         amount_vertecies = self.matrix_graph_weights.shape[0]
 
         difference = tensor_row_data - self.weights
-        change = difference * self.matrix_graph_weights[bmu_index].view(amount_vertecies, 1)
+        change = difference * self.impact_matrix[bmu_index].view(amount_vertecies, 1)
         row_change = (change * self.learning_rate)
         return row_change
 
@@ -142,6 +145,10 @@ class MapClass:
             else:
                 self.map_view_for_coding()
 
+    def calculate_impact_matrix(self, distance_matrix):
+        dist = Normal(torch.tensor([0.0]), torch.tensor([2.5]))
+
+        return (dist.cdf(-distance_matrix)) * 2
 
 
     def basic_visualization(self):
