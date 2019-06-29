@@ -90,6 +90,4 @@ map1.basic_visualization()
 plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=10, rgb=False)
 
-map1.basic_visualization()
-
 
