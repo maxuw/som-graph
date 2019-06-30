@@ -82,6 +82,8 @@ data = rgb_colors
 data_lables = rgb_lables
 batch_size = 2
 
+
+sigma = 0.1
 length = 10
 width = 10
 number_epochs = 100
@@ -91,7 +93,7 @@ learning_rate = 0.01
 # -
 
 
-map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, data_lables, batch_size, shuffle)
+map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle)
 
 # +
 # map1.weights
@@ -113,3 +115,6 @@ drawtype = "rbg"
 
 plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=100, drawtype=drawtype, labels=labels)
+# -
+
+

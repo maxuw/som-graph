@@ -3,15 +3,19 @@ import torch.utils.data
 # from torch.nn.modules.distance import PairwiseDistance
 from torch.distributions.normal import Normal
 import matplotlib.pyplot as plt
+import math
 
 
 class MapClass:
 
-    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, data_lables=None, batch_size=4, shuffle=True):
+    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, sigma = None, data_lables=None, batch_size=4, shuffle=True):
         # print("dupa")
 
-        if len(matrix_graph_weights) != length*width:
+        matrix_graph_weights_dim = len(matrix_graph_weights)
+        if matrix_graph_weights_dim > length*width:
             raise NameError('matrix_graph_weights has to equal length*width')
+        if len(matrix_graph_weights.shape) != 2 or matrix_graph_weights.shape[0] != matrix_graph_weights.shape[1]:
+            raise NameError('invalid matrix_graph_weights')
 
         self.length = length
         self.width = width
@@ -20,6 +24,14 @@ class MapClass:
         self.number_iterations = number_iterations
         self.matrix_graph_weights = matrix_graph_weights
         self.classification = None
+        if sigma == None:
+            maxv = torch.max(matrix_graph_weights)
+            sigma = maxv / 1.5
+
+        sigma2 = sigma * sigma
+        for i in range(matrix_graph_weights_dim):
+            for j in range(matrix_graph_weights_dim):
+                self.matrix_graph_weights[i][j] = self.gaussex(self.matrix_graph_weights[i][j], sigma2)
 
         self.batch_size = batch_size
         self.shuffle = shuffle
@@ -41,12 +53,15 @@ class MapClass:
     def initialize_weights(self, length, width, dimention):
         weights_init = torch.rand((length * width, dimention))
 
-
         return weights_init
 
+    @staticmethod
+    def gaussex(x, sigma2):
+        if x == -1:
+            return 0
+        return math.exp(-x ** 2 / sigma2)
+
     def get_location(self, node_number):
-        row = "dupa"
-        column = "dupa2"
 
         # if x%width == 0:
         row = int((node_number / self.width))
@@ -172,6 +187,7 @@ class MapClass:
 
     def calculate_impact_matrix(self, distance_matrix):
         dist = Normal(torch.tensor([-0.17]), torch.tensor([0.02]))
+        zz = distance_matrix[0]
         return (dist.cdf(-distance_matrix))
 
 
