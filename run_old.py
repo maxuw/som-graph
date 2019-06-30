@@ -54,12 +54,12 @@ data_lables = rgb_lables
 batch_size = 2
 
 
-sigma = None
+sigma = 5
 
 # for now amount_verticies has to be a multiplication of length and width
-length = 10
-width = 10
-number_epochs = 100
+length = 20
+width = 20
+number_epochs = 1000
 shuffle = True
 
 learning_rate = 0.01
@@ -86,7 +86,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 100
+amount_nodes = 400
 percent_edges = 0.5
 
 # +
@@ -104,11 +104,20 @@ list_edges = graph1.make_list_edges_distances(matrix1)
 netxgraph1 = graph1.build_networkx_graph(list_edges)
 
 # +
-# matrix2 = graph1.standard_som_distance_matrix(4, 3)
-# matrix2
+# matrix1
+
+# +
+# This initializes regular SOM grid matrix, it needs to be passes instead of matrix1 for it to work
+# Also one needs to experiment with sigma to achieve good results learning rate
+matrix2 = graph1.standard_som_distance_matrix(length, width)
+matrix2
+
+
 # -
 
-map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle, netxgraph1)
+
+
+map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix2, sigma, data_lables, batch_size, shuffle, netxgraph1)
 
 # +
 # ### Drawing configuration
@@ -128,6 +137,8 @@ map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigm
 # draw_every_epoch=10 draw every 10 epochs
 # -
 
+map1.impact_matrix
+
 labels=True
 drawtype = "rbg"
 
@@ -142,3 +153,5 @@ plt.rcParams['figure.dpi'] = 150
 map1.draw_all(drawtype, labels=labels)
 
 map1.draw_all(drawtype="networkx", labels=labels)
+
+

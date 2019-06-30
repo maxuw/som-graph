@@ -1,7 +1,7 @@
 import torch
 import torch.utils.data
 # from torch.nn.modules.distance import PairwiseDistance
-from torch.distributions.normal import Normal
+# from torch.distributions.normal import Normal
 import matplotlib.pyplot as plt
 import math
 import networkx as nx
@@ -94,14 +94,14 @@ class MapClass:
         return locations
 
 
-
-
     def calculate_impact_matrix(self, matrix_graph_weights):
-        if type(self.sigma) != torch.Tensor:
+        if self.sigma == None:
             maxv = torch.max(matrix_graph_weights)
             self.sigma = maxv / 1.5
 
         sigma2 = self.sigma * self.sigma
+        print("sigma: ", self.sigma)
+        print("sigma2: ", sigma2)
 
         impact_matrix = torch.zeros_like(matrix_graph_weights)
         for i in range(self.matrix_graph_weights_dim):
@@ -222,6 +222,7 @@ class MapClass:
         else:
 
             for i in range(len(self.history)):
+                print("plot of state: ", i)
                 self.draw_function(i, drawtype, labels)
 
     def draw_function(self, history_number, drawtype, labels):
@@ -291,7 +292,8 @@ class MapClass:
             for i in range(len(classification)):
                 labels[classification[i]] = self.data_lables[i]
 
-            nx.draw(nx_graph, pos=pos, node_size=(100000/self.matrix_graph_weights_dim), with_labels=False)
+            print("plot of state: ", j)
+            nx.draw(nx_graph, pos=pos, node_size=(100000/(self.matrix_graph_weights_dim)), with_labels=False)
             nx.draw_networkx_labels(nx_graph, pos, labels)
             plt.draw()
             plt.show()
