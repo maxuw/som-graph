@@ -65,7 +65,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # Graph setup
 # -
 
-amount_vertecies = 100
+amount_vertecies = 4
 percent_edges = 0.5
 
 
@@ -83,9 +83,9 @@ data_lables = rgb_lables
 batch_size = 2
 
 
-sigma = 0.1
-length = 10
-width = 10
+sigma = None
+length = 2
+width = 2
 number_epochs = 100
 shuffle = True
 
@@ -94,6 +94,16 @@ learning_rate = 0.01
 
 
 map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle)
+
+map1
+
+map1.matrix_graph_weights
+
+map1.calculate_impact_matrix(map1.matrix_graph_weights)
+
+map1.sigma
+
+type(map1.sigma)
 
 # +
 # map1.weights

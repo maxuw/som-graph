@@ -8,11 +8,11 @@ import math
 
 class MapClass:
 
-    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, sigma = None, data_lables=None, batch_size=4, shuffle=True):
+    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, sigma=None, data_lables=None, batch_size=4, shuffle=True):
         # print("dupa")
 
-        matrix_graph_weights_dim = len(matrix_graph_weights)
-        if matrix_graph_weights_dim > length*width:
+        self.matrix_graph_weights_dim = len(matrix_graph_weights)
+        if self.matrix_graph_weights_dim > length*width:
             raise NameError('matrix_graph_weights has to equal length*width')
         if len(matrix_graph_weights.shape) != 2 or matrix_graph_weights.shape[0] != matrix_graph_weights.shape[1]:
             raise NameError('invalid matrix_graph_weights')
@@ -24,14 +24,7 @@ class MapClass:
         self.number_iterations = number_iterations
         self.matrix_graph_weights = matrix_graph_weights
         self.classification = None
-        if sigma == None:
-            maxv = torch.max(matrix_graph_weights)
-            sigma = maxv / 1.5
-
-        sigma2 = sigma * sigma
-        for i in range(matrix_graph_weights_dim):
-            for j in range(matrix_graph_weights_dim):
-                self.matrix_graph_weights[i][j] = self.gaussex(self.matrix_graph_weights[i][j], sigma2)
+        self.sigma = sigma
 
         self.batch_size = batch_size
         self.shuffle = shuffle
@@ -185,10 +178,22 @@ class MapClass:
             else:
                 self.map_view_for_coding()
 
-    def calculate_impact_matrix(self, distance_matrix):
-        dist = Normal(torch.tensor([-0.17]), torch.tensor([0.02]))
-        zz = distance_matrix[0]
-        return (dist.cdf(-distance_matrix))
+    def calculate_impact_matrix(self, matrix_graph_weights):
+        if type(self.sigma) != torch.Tensor:
+            maxv = torch.max(matrix_graph_weights)
+            self.sigma = maxv / 1.5
+
+        sigma2 = self.sigma * self.sigma
+
+        impact_matrix = torch.zeros_like(matrix_graph_weights)
+        for i in range(self.matrix_graph_weights_dim):
+            for j in range(self.matrix_graph_weights_dim):
+                impact_matrix[i][j] = self.gaussex(matrix_graph_weights[i][j], sigma2)
+
+        return impact_matrix
+        # dist = Normal(torch.tensor([-0.17]), torch.tensor([0.02]))
+        # zz = distance_matrix[0]
+        # return (dist.cdf(-distance_matrix))
 
 
     def basic_visualization(self, labels):
