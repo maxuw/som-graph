@@ -57,8 +57,8 @@ batch_size = 2
 sigma = None
 
 # for now amount_verticies has to be a multiplication of length and width
-length = 10
-width = 10
+length = 4
+width = 3
 number_epochs = 100
 shuffle = True
 
@@ -86,7 +86,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 10
+amount_nodes = 12
 percent_edges = 0.5
 
 # +
@@ -100,10 +100,11 @@ graph1 = Graph()
 matrix1 = graph1.create_matrix(amount_nodes)
 edges1 = graph1.generate_edges(amount_nodes, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
-# -
 
-matrix2 = graph1.standard_som_distance_matrix(4, 3)
-matrix2
+# +
+# matrix2 = graph1.standard_som_distance_matrix(4, 3)
+# matrix2
+# -
 
 map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle)
 
@@ -123,8 +124,12 @@ drawtype = "rbg"
 
 
 plt.rcParams['figure.dpi'] = 150
-map1.large_cycle(draw_every_epoch=100, drawtype=drawtype, labels=labels)
+map1.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 # -
+
+
+
+map1.draw_all(drawtype, labels=labels)
 
 
 

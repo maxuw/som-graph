@@ -8,6 +8,9 @@ import networkx as nx
 
 class MapClass:
 
+################################################
+################# Initialization
+
     def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, sigma=None, data_lables=None, batch_size=4, shuffle=True):
         # print("dupa")
 
@@ -43,7 +46,15 @@ class MapClass:
         self.history = []
         self.history.append(self.weights)
 
+        self.history_classifications = []
+        self.history_classifications.append(self.classify_all(self.convert_data_tensor(self.data)))
+
         # self.initialize_location(self.length, self.width, self.node_dimenstion)
+
+
+################################################
+################# Class Functions - Initialize functions
+
 
     def initialize_weights(self, length, width, dimention):
         weights_init = torch.rand((length * width, dimention))
@@ -106,14 +117,57 @@ class MapClass:
         #     self.basic_visualization()
             # print(weights_display(weights_.weights))
 
-    def visualize_rgb(self, labels=True):
-        tens_try = self.weights.view(self.length, self.width, 3)
+
+
+    def large_cycle(self, verbose=False, draw_every_epoch=0, drawtype=None, labels=True):
+
+        for i in range(self.number_iterations):
+            self.cycle(self.trainloader, verbose)
+
+            # if i % draw_every_epoch == 0 and draw_every_epoch != 0: self.draw_function(drawtype, labels)
+
+
+
+        self.history.append(self.weights)
+        self.history_classifications.append(self.classify_all(self.convert_data_tensor(self.data)))
+
+################################################
+################# Visualizations
+
+    def draw_all(self, drawtype="squares", labels=True):
+        for i in range(len(self.history)):
+            self.draw_function(i, drawtype, labels)
+
+    def draw_function(self, history_number, drawtype, labels):
+
+        if drawtype == "rbg": self.visualize_rgb(history_number, labels)
+        elif drawtype == "black-white": self.basic_visualization(history_number, labels)
+        else:
+            if drawtype =="labels":
+                self.visualize_norgb(history_number, labels)
+
+    def basic_visualization(self, history_number, labels):
+        plt.style.use('grayscale')
+        plt.imshow(self.weights_to_map(self.history[history_number]));
+        plt.colorbar()
+
+        if labels == True:
+            classification = self.history_classifications[history_number]
+            for i in range(len(classification)):
+                loc_tuple = self.get_location(classification[i])
+                plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                         bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
+
+        plt.show()
+
+    def visualize_rgb(self, history_number, labels=True):
+        tens_try = self.history[history_number].view(self.length, self.width, 3)
         plt.imshow(tens_try)
 
         if labels == True:
-            self.classification = self.classify_all(self.convert_data_tensor(self.data))
-            for i in range(len(self.classification)):
-                loc_tuple = self.get_location(self.classification[i])
+            classification = self.history_classifications[history_number]
+            for i in range(len(classification)):
+                loc_tuple = self.get_location(classification[i])
                 plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
                 bbox=dict(facecolor='white', alpha=0.5, lw=0))
 
@@ -123,38 +177,21 @@ class MapClass:
 
     #     print(map_display(map_.map))
 
-    def visualize_norgb(self, labels=True):
+    def visualize_norgb(self, history_number, labels=True):
+
         tens_try = torch.ones(self.length, self.width, 3)
         plt.imshow(tens_try)
 
         if labels == True:
-            self.classification = self.classify_all(self.convert_data_tensor(self.data))
-            for i in range(len(self.classification)):
-                loc_tuple = self.get_location(self.classification[i])
+            classification = self.history_classifications[history_number]
+            for i in range(len(classification)):
+                loc_tuple = self.get_location(classification[i])
                 plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
                          bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
         plt.show()
 
-    def large_cycle(self, verbose=False, draw_every_epoch=10, drawtype=None, labels=True):
-
-        for i in range(self.number_iterations):
-            self.cycle(self.trainloader, verbose)
-
-            if i % draw_every_epoch == 0 and draw_every_epoch != 0: self.draw_function(drawtype, labels)
-
-        if draw_every_epoch != 0: self.draw_function(drawtype, labels)
-
-        self.history.append(self.weights)
-
-    
-
-    def draw_function(self, drawtype, labels):
-
-        if drawtype == "rbg": self.visualize_rgb(labels)
-        elif drawtype == "black-white": self.basic_visualization(labels)
-        else:
-            if drawtype =="labels":
-                self.visualize_norgb(labels)
+################################################
+################# ???
 
 
     def initialize_locations(self, weights):
@@ -202,26 +239,14 @@ class MapClass:
         # return (dist.cdf(-distance_matrix))
 
 
-    def basic_visualization(self, labels):
-        plt.style.use('grayscale')
-        plt.imshow(self.weights_to_map());
-        plt.colorbar()
 
-        if labels == True:
-            self.classification = self.classify_all(self.convert_data_tensor(self.data))
-            for i in range(len(self.classification)):
-                loc_tuple = self.get_location(self.classification[i])
-                plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
-                         bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
 
-        plt.show()
-
-    def weights_to_map(self): #old map_display
+    def weights_to_map(self, weights): #old map_display
         #     return torch.transpose(map_, 0, 1).view(dim, length, width)
         if self.node_dimenstion == 1:
-            return self.weights.view(self.length, self.width)
+            return weights.view(self.length, self.width)
         else:
-            return self.weights.view(self.node_dimenstion, self.length, self.width)
+            return weights.view(self.node_dimenstion, self.length, self.width)
 
     def map_view_for_coding(self):
         return torch.transpose(self.weights, 0, 1).view(self.node_dimenstion, self.length, self.width)
