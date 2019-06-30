@@ -53,7 +53,7 @@ color_names = \
 # -
 
 amount_vertecies = 100
-percent_edges = 1
+percent_edges = 0.5
 
 
 
@@ -88,8 +88,18 @@ map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, data
 # -
 
 plt.rcParams['figure.dpi'] = 150
-map1.large_cycle(draw_every_epoch=10, rgb=True)
+map1.large_cycle(draw_every_epoch=100, rgb=True)
 
-map1.cycle()
+# +
+import matplotlib.patheffects as path_effects
+
+
+text = plt.text(0.5, 0.5, 'Hello path effects world!',
+                path_effects=[path_effects.withSimplePatchShadow()])
+
+# plt.plot([0, 3, 2, 5], linewidth=5, color='blue',
+#          path_effects=[path_effects.Normal()])
+plt.show()
+# -
 
 

@@ -112,6 +112,17 @@ class MapClass:
 
     #     print(map_display(map_.map))
 
+    def visualize_norgb(self):
+        tens_try = torch.ones(self.length, self.width, 3)
+        plt.imshow(tens_try)
+
+        self.classification = self.classify_all(self.convert_data_tensor(self.data))
+        for i in range(len(self.classification)):
+            loc_tuple = self.get_location(self.classification[i])
+            plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                     bbox=dict(facecolor="none", alpha=0.5, lw=0))
+        plt.show()
+
     def large_cycle(self, verbose=False, draw_every_epoch=10, rgb=False):
         if rgb: self.visualize_rgb()
         #     print(map_display(map_.map))
@@ -120,6 +131,7 @@ class MapClass:
             if draw_every_epoch != False and rgb:
                 if i % draw_every_epoch == 0: self.visualize_rgb()
         if rgb: self.visualize_rgb()
+        else: self.visualize_norgb()
 
 
     def initialize_locations(self, weights):
