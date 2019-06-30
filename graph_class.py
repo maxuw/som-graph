@@ -10,7 +10,7 @@ class Graph:
         matrix_graph_weights = torch.empty(amount_vertecies, amount_vertecies)
         for i in range(amount_vertecies):
             for j in range(amount_vertecies):
-                matrix_graph_weights[i][j] = 0 if i == j else -1
+                matrix_graph_weights[i][j] = 0 if i == j else 1
 
         return matrix_graph_weights
 
