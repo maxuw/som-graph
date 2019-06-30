@@ -48,6 +48,16 @@ color_names = \
 
 
 
+
+
+#buildings data
+building_sizes = [[0.1, 0.3], [0.1, 0.2], [1., 1.], [0.125, 0.2], [0.529, 0.12], [1.0, 0.3], [0.33, 0.3], 
+                  [0.4, 0.4], [0.67, 0.3], [.33, 0.7], [.5, 0.1]]
+
+building_labels = building_sizes
+
+
+
 # +
 # Graph setup
 # -
@@ -65,8 +75,8 @@ matrix1 = graph1.add_edges(matrix1, edges1)
 # +
 # Network configuration
 
-data = rgb_colors
-data_lables = color_names
+data = building_sizes
+data_lables = building_labels
 batch_size = 2
 
 length = 10
@@ -85,21 +95,13 @@ map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, data
 
 # +
 # training, dim, number_rows_data = load_data(data, batch_size)
-# -
-
-plt.rcParams['figure.dpi'] = 150
-map1.large_cycle(draw_every_epoch=100, rgb=True)
 
 # +
-import matplotlib.patheffects as path_effects
+# rgb=True tries to draw colors on map - needs an input data with 3 vectors
+# rgb=False draws labels on the map... labels are necessary...
 
-
-text = plt.text(0.5, 0.5, 'Hello path effects world!',
-                path_effects=[path_effects.withSimplePatchShadow()])
-
-# plt.plot([0, 3, 2, 5], linewidth=5, color='blue',
-#          path_effects=[path_effects.Normal()])
-plt.show()
+plt.rcParams['figure.dpi'] = 150
+map1.large_cycle(draw_every_epoch=100, rgb=False)
 # -
 
 

@@ -120,7 +120,7 @@ class MapClass:
         for i in range(len(self.classification)):
             loc_tuple = self.get_location(self.classification[i])
             plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
-                     bbox=dict(facecolor="none", alpha=0.5, lw=0))
+                     bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
         plt.show()
 
     def large_cycle(self, verbose=False, draw_every_epoch=10, rgb=False):

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/colors_3d.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/colors_3d.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/colors_3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/colors_3d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/building_sizes-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/building_sizes-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/colors_3d-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/building_sizes.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/building_sizes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colors_3d.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colors_3d.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/map_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_class.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,20 +22,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="118" column="84" selection-start-line="118" selection-start-column="84" selection-end-line="118" selection-end-column="84" />
+            <state relative-caret-position="455">
+              <caret line="122" column="77" selection-start-line="122" selection-start-column="77" selection-end-line="122" selection-end-column="77" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/colors_3d.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="148" selection-start-line="148" selection-end-line="148" />
             </state>
           </provider>
         </entry>
@@ -158,12 +154,12 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="6521000" />
+      <workItem from="1561842895958" duration="7202000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60304000" />
+    <option name="totallyTimeSpent" value="60985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="423" y="118" width="1317" height="857" extended-state="0" />
@@ -239,8 +235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="118" column="84" selection-start-line="118" selection-start-column="84" selection-end-line="118" selection-end-column="84" />
+        <state relative-caret-position="455">
+          <caret line="122" column="77" selection-start-line="122" selection-start-column="77" selection-end-line="122" selection-end-column="77" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
@@ -250,7 +246,7 @@
     <entry file="file://$PROJECT_DIR$/colors_3d.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1740">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
+          <caret line="103" selection-start-line="103" selection-end-line="103" />
         </state>
       </provider>
     </entry>
