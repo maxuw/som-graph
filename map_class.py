@@ -37,14 +37,17 @@ class MapClass:
 
 
         self.data_lables = data_lables
+        self.history = []
 
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
         self.locations = self.initialize_locations(self.weights)
 
         self.impact_matrix = self.calculate_impact_matrix(self.matrix_graph_weights)
 
-        self.history = []
-        self.history.append(self.weights)
+
+        self.history.append(self.weights.clone())
+        print(self.weights[0:5])
+        print(self.history[0][0:5])
 
         self.history_classifications = []
         self.history_classifications.append(self.classify_all(self.convert_data_tensor(self.data)))
@@ -70,6 +73,7 @@ class MapClass:
     def initialize_weights(self, length, width, dimention):
         weights_init = torch.rand((length * width, dimention))
 
+        # self.history.append(weights_init)
         return weights_init
 
     @staticmethod
@@ -182,7 +186,7 @@ class MapClass:
 
 
 
-        self.history.append(self.weights)
+        self.history.append(self.weights.clone())
         self.history_classifications.append(self.classify_all(self.convert_data_tensor(self.data)))
 
 

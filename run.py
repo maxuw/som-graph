@@ -57,8 +57,8 @@ batch_size = 2
 sigma = None
 
 # for now amount_verticies has to be a multiplication of length and width
-length = 4
-width = 3
+length = 10
+width = 10
 number_epochs = 100
 shuffle = True
 
@@ -86,7 +86,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 12
+amount_nodes = 100
 percent_edges = 0.5
 
 # +
@@ -126,6 +126,10 @@ drawtype = "rbg"
 plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 # -
+
+map1.history[0][0:5]
+
+map1.history[1][0:5]
 
 map1.draw_all(drawtype, labels=labels)
 

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/run-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/run-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/run.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
@@ -17,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="440">
+              <caret line="76" column="27" lean-forward="true" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -171,12 +172,12 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="23352000" />
+      <workItem from="1561842895958" duration="24403000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77135000" />
+    <option name="totallyTimeSpent" value="78186000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="481" y="87" width="1317" height="857" extended-state="0" />
@@ -201,8 +202,8 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49793103" visible="true" weight="0.039401103" />
-      <window_info anchor="right" x="0" y="0" width="323" height="738" id="Documentation" order="4" sideWeight="0.50206894" side_tool="true" visible="true" weight="0.039401103" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49793103" visible="true" weight="0.085894406" />
+      <window_info anchor="right" x="0" y="0" width="323" height="738" id="Documentation" order="4" sideWeight="0.50206894" side_tool="true" visible="true" weight="0.085894406" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
   </component>
@@ -259,8 +260,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="440">
+          <caret line="76" column="27" lean-forward="true" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
