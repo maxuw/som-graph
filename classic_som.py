@@ -105,15 +105,11 @@ netxgraph1 = graph1.build_networkx_graph(list_edges)
 
 # +
 # matrix1
+# -
 
-# +
 # This initializes regular SOM grid matrix, it needs to be passes instead of matrix1 for it to work
 # Also one needs to experiment with sigma to achieve good results learning rate
 matrix2 = graph1.standard_som_distance_matrix(length, width)
-matrix2
-
-
-# -
 
 
 
@@ -124,7 +120,7 @@ map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix2, sigm
 
 # drawtype="rbg" tries to draw colors on map - needs an input data with 3 dimensions or columns (colors)
 
-# drawtype="black-white" draws black-white - needs an input data with one dimension or column ()
+# drawtype="black-white" draws black-white - needs an input data with one dimension or column (gray_colors)
 # drawtype="networkx" graph drawing using the networkx library
 # drawtype="None" - default draws empty space
 

@@ -12,22 +12,22 @@ class MapClass:
 ################# Initialization
 
     def __init__(self, data, length, width, learning_rate, number_iterations,
-                 matrix_graph_weights, sigma=None, data_lables=None, batch_size=4,
+                 matrix_graph_distances, sigma=None, data_lables=None, batch_size=4,
                  shuffle=True, networkx_graph=None):
         # print("dupa")
 
-        self.matrix_graph_weights_dim = len(matrix_graph_weights)
-        if self.matrix_graph_weights_dim > length*width:
-            raise NameError('matrix_graph_weights has to equal length*width')
-        if len(matrix_graph_weights.shape) != 2 or matrix_graph_weights.shape[0] != matrix_graph_weights.shape[1]:
-            raise NameError('invalid matrix_graph_weights')
+        self.amount_nodes = len(matrix_graph_distances)
+        if self.amount_nodes > length*width:
+            raise NameError('matrix_graph_distances has to equal length*width')
+        if len(matrix_graph_distances.shape) != 2 or matrix_graph_distances.shape[0] != matrix_graph_distances.shape[1]:
+            raise NameError('invalid matrix_graph_distances')
 
         self.length = length
         self.width = width
         # self.node_dimenstion = node_dimension
         self.learning_rate = learning_rate
         self.number_iterations = number_iterations
-        self.matrix_graph_weights = matrix_graph_weights
+        self.matrix_graph_distances = matrix_graph_distances
         self.classification = None
         self.sigma = sigma
 
@@ -44,7 +44,7 @@ class MapClass:
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
         self.locations = self.initialize_locations(self.weights)
 
-        self.impact_matrix = self.calculate_impact_matrix(self.matrix_graph_weights)
+        self.impact_matrix = self.calculate_impact_matrix(self.matrix_graph_distances)
 
 
         self.history.append(self.weights.clone())
@@ -94,19 +94,19 @@ class MapClass:
         return locations
 
 
-    def calculate_impact_matrix(self, matrix_graph_weights):
+    def calculate_impact_matrix(self, matrix_graph_distances):
         if self.sigma == None:
-            maxv = torch.max(matrix_graph_weights)
+            maxv = torch.max(matrix_graph_distances)
             self.sigma = maxv / 1.5
 
         sigma2 = self.sigma * self.sigma
         print("sigma: ", self.sigma)
         print("sigma2: ", sigma2)
 
-        impact_matrix = torch.zeros_like(matrix_graph_weights)
-        for i in range(self.matrix_graph_weights_dim):
-            for j in range(self.matrix_graph_weights_dim):
-                impact_matrix[i][j] = self.gaussex(matrix_graph_weights[i][j], sigma2)
+        impact_matrix = torch.zeros_like(matrix_graph_distances)
+        for i in range(self.amount_nodes):
+            for j in range(self.amount_nodes):
+                impact_matrix[i][j] = self.gaussex(matrix_graph_distances[i][j], sigma2)
 
         return impact_matrix
         # dist = Normal(torch.tensor([-0.17]), torch.tensor([0.02]))
@@ -137,7 +137,7 @@ class MapClass:
 
     def move_closer(self, bmu_index, tensor_row_data):
 
-        amount_vertecies = self.matrix_graph_weights.shape[0]
+        amount_vertecies = self.matrix_graph_distances.shape[0]
 
         difference = tensor_row_data - self.weights
         change = difference * self.impact_matrix[bmu_index].view(amount_vertecies, 1)
@@ -286,19 +286,19 @@ class MapClass:
 
             labels = dict()
 
-            for i in range(self.matrix_graph_weights_dim):
+            for i in range(self.amount_nodes):
                 labels[i] = str(i)
 
             for i in range(len(classification)):
                 labels[classification[i]] = self.data_lables[i]
 
             print("plot of state: ", j)
-            nx.draw(nx_graph, pos=pos, node_size=(100000/(self.matrix_graph_weights_dim)), with_labels=False)
+            nx.draw(nx_graph, pos=pos, node_size=(100000/(self.amount_nodes)), with_labels=False)
             nx.draw_networkx_labels(nx_graph, pos, labels)
             plt.draw()
             plt.show()
 
-        # nx.draw(nx_graph, pos=pos, node_size=(10000/self.matrix_graph_weights_dim), with_labels=False)
+        # nx.draw(nx_graph, pos=pos, node_size=(10000/self.amount_nodes), with_labels=False)
         # nx.draw_networkx_labels(nx_graph, pos, labels)
 
 
