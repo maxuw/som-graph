@@ -127,8 +127,6 @@ plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 # -
 
-
-
 map1.draw_all(drawtype, labels=labels)
 
 

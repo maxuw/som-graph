@@ -56,6 +56,17 @@ class MapClass:
 ################# Class Functions - Initialize functions
 
 
+    def load_data(self, data, batch_size, shuffle):
+        dim = len(data[0])
+        print(dim)
+        number_rows_data = len(data)
+        print(number_rows_data)
+
+        trainloader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=shuffle)
+
+        return trainloader, dim, number_rows_data
+
+
     def initialize_weights(self, length, width, dimention):
         weights_init = torch.rand((length * width, dimention))
 
@@ -66,6 +77,37 @@ class MapClass:
         if x == -1:
             return 0
         return math.exp(-x ** 2 / sigma2)
+
+    def initialize_locations(self, weights):
+        locations = []
+        for i in range(len(weights)):
+            location = self.get_location(i)
+            locations.append(location)
+            # print(location)
+        return locations
+
+
+
+
+    def calculate_impact_matrix(self, matrix_graph_weights):
+        if type(self.sigma) != torch.Tensor:
+            maxv = torch.max(matrix_graph_weights)
+            self.sigma = maxv / 1.5
+
+        sigma2 = self.sigma * self.sigma
+
+        impact_matrix = torch.zeros_like(matrix_graph_weights)
+        for i in range(self.matrix_graph_weights_dim):
+            for j in range(self.matrix_graph_weights_dim):
+                impact_matrix[i][j] = self.gaussex(matrix_graph_weights[i][j], sigma2)
+
+        return impact_matrix
+        # dist = Normal(torch.tensor([-0.17]), torch.tensor([0.02]))
+        # zz = distance_matrix[0]
+        # return (dist.cdf(-distance_matrix))
+
+################################################
+################# SOM core algorithms
 
     def get_location(self, node_number):
 
@@ -94,6 +136,18 @@ class MapClass:
         change = difference * self.impact_matrix[bmu_index].view(amount_vertecies, 1)
         row_change = (change * self.learning_rate)
         return row_change
+
+    def classify_all(self, training_data_raw, verbose=False):
+        data_classification = []
+        for row in training_data_raw:
+            # print(row)
+            i_bmu = self.find_bmu(row, verbose).item()
+            data_classification.append(i_bmu)
+
+        return data_classification
+
+################################################
+################# Cycle
 
     def cycle(self, training_data, verbose=False):
         for batch in training_data:
@@ -130,6 +184,25 @@ class MapClass:
 
         self.history.append(self.weights)
         self.history_classifications.append(self.classify_all(self.convert_data_tensor(self.data)))
+
+
+    def step(self, training_data, verbose=False):
+        i = 0
+        for batch in training_data:
+            if i != 0: break
+            t_batch = torch.stack([x for x in batch]).float().t()
+            row = t_batch[0]
+            if verbose: print("row of data", row)
+            i_bmu = self.find_bmu(row, verbose).item()
+            self.move_closer(i_bmu, row)
+            i += 1
+
+        if verbose == True:
+            if self.node_dimenstion == 1:
+                self.basic_visualization()
+                print(self.weights_to_map())
+            else:
+                self.map_view_for_coding()
 
 ################################################
 ################# Visualizations
@@ -190,97 +263,6 @@ class MapClass:
                          bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
         plt.show()
 
-################################################
-################# ???
-
-
-    def initialize_locations(self, weights):
-        locations = []
-        for i in range(len(weights)):
-            location = self.get_location(i)
-            locations.append(location)
-            # print(location)
-        return locations
-
-
-    def step(self, training_data, verbose=False):
-        i = 0
-        for batch in training_data:
-            if i != 0: break
-            t_batch = torch.stack([x for x in batch]).float().t()
-            row = t_batch[0]
-            if verbose: print("row of data", row)
-            i_bmu = self.find_bmu(row, verbose).item()
-            self.move_closer(i_bmu, row)
-            i += 1
-
-        if verbose == True:
-            if self.node_dimenstion == 1:
-                self.basic_visualization()
-                print(self.weights_to_map())
-            else:
-                self.map_view_for_coding()
-
-    def calculate_impact_matrix(self, matrix_graph_weights):
-        if type(self.sigma) != torch.Tensor:
-            maxv = torch.max(matrix_graph_weights)
-            self.sigma = maxv / 1.5
-
-        sigma2 = self.sigma * self.sigma
-
-        impact_matrix = torch.zeros_like(matrix_graph_weights)
-        for i in range(self.matrix_graph_weights_dim):
-            for j in range(self.matrix_graph_weights_dim):
-                impact_matrix[i][j] = self.gaussex(matrix_graph_weights[i][j], sigma2)
-
-        return impact_matrix
-        # dist = Normal(torch.tensor([-0.17]), torch.tensor([0.02]))
-        # zz = distance_matrix[0]
-        # return (dist.cdf(-distance_matrix))
-
-
-
-
-    def weights_to_map(self, weights): #old map_display
-        #     return torch.transpose(map_, 0, 1).view(dim, length, width)
-        if self.node_dimenstion == 1:
-            return weights.view(self.length, self.width)
-        else:
-            return weights.view(self.node_dimenstion, self.length, self.width)
-
-    def map_view_for_coding(self):
-        return torch.transpose(self.weights, 0, 1).view(self.node_dimenstion, self.length, self.width)
-    #     return map_.view(dim, length, width)
-
-    def classify_all(self, training_data_raw, verbose=False):
-        data_classification = []
-        for row in training_data_raw:
-            # print(row)
-            i_bmu = self.find_bmu(row, verbose).item()
-            data_classification.append(i_bmu)
-
-        return data_classification
-
-    def convert_data_tensor(self, data):
-        list_data_tensor = []
-        for row in data:
-            row_tensor = torch.tensor(row)
-            list_data_tensor.append(row_tensor)
-
-        return list_data_tensor
-
-
-    def load_data(self, data, batch_size, shuffle):
-        dim = len(data[0])
-        print(dim)
-        number_rows_data = len(data)
-        print(number_rows_data)
-
-        trainloader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=shuffle)
-
-        return trainloader, dim, number_rows_data
-
-
     def visualize_networkx(self, nx_graph, labels=True):
         nx.draw(nx_graph, with_labels=True)
         plt.draw()
@@ -300,3 +282,33 @@ class MapClass:
     # plt.text(0, 1, color_names[1], ha='center', va='center',
     #          bbox=dict(facecolor='white', alpha=0.5, lw=0))
         plt.show()
+
+################################################
+################# Random
+
+
+    def weights_to_map(self, weights): #old map_display
+        #     return torch.transpose(map_, 0, 1).view(dim, length, width)
+        if self.node_dimenstion == 1:
+            return weights.view(self.length, self.width)
+        else:
+            return weights.view(self.node_dimenstion, self.length, self.width)
+
+    def map_view_for_coding(self):
+        return torch.transpose(self.weights, 0, 1).view(self.node_dimenstion, self.length, self.width)
+    #     return map_.view(dim, length, width)
+
+
+
+    def convert_data_tensor(self, data):
+        list_data_tensor = []
+        for row in data:
+            row_tensor = torch.tensor(row)
+            list_data_tensor.append(row_tensor)
+
+        return list_data_tensor
+
+
+
+
+
