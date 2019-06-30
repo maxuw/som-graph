@@ -57,8 +57,8 @@ batch_size = 2
 sigma = 5
 
 # for now amount_verticies has to be a multiplication of length and width
-length = 25
-width = 25
+length = 50
+width = 50
 number_epochs = 1000
 shuffle = True
 
@@ -86,22 +86,22 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 625
+amount_nodes = 2500
 percent_edges = 0.5
 
 # +
 # using graph class to generate matrix
 
-graph1 = Graph()
+# graph1 = Graph()
 
 # +
-# matrix genaration
+# # matrix genaration
 
-matrix1 = graph1.create_matrix(amount_nodes)
-edges1 = graph1.generate_edges(amount_nodes, percent_edges)
-matrix1 = graph1.add_edges(matrix1, edges1)
-list_edges = graph1.make_list_edges_distances(matrix1)
-netxgraph1 = graph1.build_networkx_graph(list_edges)
+# matrix1 = graph1.create_matrix(amount_nodes)
+# edges1 = graph1.generate_edges(amount_nodes, percent_edges)
+# matrix1 = graph1.add_edges(matrix1, edges1)
+# list_edges = graph1.make_list_edges_distances(matrix1)
+# netxgraph1 = graph1.build_networkx_graph(list_edges)
 
 # +
 # matrix1
@@ -109,11 +109,14 @@ netxgraph1 = graph1.build_networkx_graph(list_edges)
 
 # This initializes regular SOM grid matrix, it needs to be passes instead of matrix1 for it to work
 # Also one needs to experiment with sigma to achieve good results learning rate
-matrix2 = graph1.standard_som_distance_matrix(length, width)
+graph2 = Graph()
+matrix2 = graph2.standard_som_distance_matrix(length, width)
+list_edges = graph2.make_list_edges_distances(matrix2)
+netxgraph2 = graph2.build_networkx_graph(list_edges)
 
 
 
-map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix2, sigma, data_lables, batch_size, shuffle, netxgraph1)
+map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix2, sigma, data_lables, batch_size, shuffle, netxgraph2)
 
 # +
 # ### Drawing configuration
@@ -132,8 +135,6 @@ map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix2, sigm
 # draw_every_epoch=0 Don't draw anything
 # draw_every_epoch=10 draw every 10 epochs
 # -
-
-map1.impact_matrix
 
 labels=True
 drawtype = "rbg"

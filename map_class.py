@@ -250,19 +250,42 @@ class MapClass:
         plt.show()
 
     def visualize_rgb(self, history_number, labels=True):
-        tens_try = self.history[history_number].view(self.length, self.width, 3)
-        plt.imshow(tens_try)
 
-        if labels == True:
-            classification = self.history_classifications[history_number]
-            for i in range(len(classification)):
-                loc_tuple = self.get_location(classification[i])
-                plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
-                bbox=dict(facecolor='white', alpha=0.5, lw=0))
+        if (self.length*self.width) == self.amount_nodes:
+
+            tens_try = self.history[history_number].view(self.length, self.width, 3)
+            plt.imshow(tens_try)
+            if labels == True:
+                classification = self.history_classifications[history_number]
+                for i in range(len(classification)):
+                    loc_tuple = self.get_location(classification[i])
+                    plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                             bbox=dict(facecolor='white', alpha=0.5, lw=0))
+
+            plt.show()
+
+        elif (self.length*self.width) > self.amount_nodes:
+            ones_big = torch.ones(self.length*self.width, self.weights.shape[1])
+            ones_big[0:self.amount_nodes] = self.history[history_number]
+            tens_try = ones_big.view(self.length, self.width, 3)
+            plt.imshow(tens_try)
+
+            if labels == True:
+                classification = self.history_classifications[history_number]
+                for i in range(len(classification)):
+                    loc_tuple = self.get_location(classification[i])
+                    plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                             bbox=dict(facecolor='white', alpha=0.5, lw=0))
+            plt.show()
+
+        else:
+            print("can't run this visualization if there are less length*width against amount nodes")
+
+
 
     # plt.text(0, 1, color_names[1], ha='center', va='center',
     #          bbox=dict(facecolor='white', alpha=0.5, lw=0))
-        plt.show()
+
 
     #     print(map_display(map_.map))
 

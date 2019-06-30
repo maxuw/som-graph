@@ -58,7 +58,7 @@ sigma = None
 
 # for now amount_verticies has to be a multiplication of length and width
 length = 5
-width = 5
+width = 4
 number_epochs = 1000
 shuffle = True
 
@@ -86,7 +86,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 25
+amount_nodes = 20
 percent_edges = 0.2
 
 # +
