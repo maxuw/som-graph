@@ -44,7 +44,19 @@ rgb_lables = \
      'cyan', 'violet', 'yellow', 'white',
      'darkgrey', 'mediumgrey', 'lightgrey']
 
+shape_map_human = \
+    [
+    [0,0,0,1,0,0,0],
+    [1,0,1,1,1,0,1],
+    [1,0,0,1,0,0,1],
+    [1,1,1,1,1,1,1],
+    [0,0,1,1,1,0,0],
+    [0,0,1,0,1,0,0],
+    [0,0,1,0,1,0,0],
+    [0,0,1,0,1,0,0]]
+    
 
+shape_map_human
 
 # +
 # Network configuration
@@ -52,13 +64,14 @@ rgb_lables = \
 data = rgb_colors
 data_lables = rgb_lables
 batch_size = 2
+special_shape_map = shape_map_human
 
 
 sigma = None
 
 # for now amount_verticies has to be a multiplication of length and width
-length = 5
-width = 4
+length = 8
+width = 7
 number_epochs = 1000
 shuffle = True
 
@@ -86,7 +99,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 20
+amount_nodes = 25
 percent_edges = 0.2
 
 # +
@@ -115,7 +128,8 @@ netxgraph1 = graph1.build_networkx_graph(list_edges)
 
 
 
-map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle, netxgraph1)
+map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1,
+                sigma, data_lables, batch_size, shuffle, netxgraph1, special_shape_map)
 
 # +
 # ### Drawing configuration
@@ -151,6 +165,36 @@ map1.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 plt.rcParams['figure.dpi'] = 150
 map1.draw_all(drawtype, labels=labels)
 
+map1.history_classifications
+
 map1.draw_all(drawtype="networkx", labels=labels)
+
+# +
+ones_big = torch.ones(length, width, map1.weights.shape[1])
+
+tensor_human = torch.tensor(shape_map_human)
+
+tensor_human.shape
+
+ones_big.shape
+
+map1.weights.shape
+
+p = 0
+
+for l in range(tensor_human.shape[0]):
+    for w in range(tensor_human.shape[1]):
+        if tensor_human[l][w] == 1:
+            print(w)
+            ones_big[l][w][:] = map1.weights[p]
+            print("added at ", l, " ", w )
+            print(p)
+            p += 1
+            
+# -
+
+ones_big.view(length, width, 3)
+
+plt.imshow(ones_big)
 
 

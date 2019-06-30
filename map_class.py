@@ -13,7 +13,7 @@ class MapClass:
 
     def __init__(self, data, length, width, learning_rate, number_iterations,
                  matrix_graph_distances, sigma=None, data_lables=None, batch_size=4,
-                 shuffle=True, networkx_graph=None):
+                 shuffle=True, networkx_graph=None, special_shape_map=None):
         # print("dupa")
 
         self.amount_nodes = len(matrix_graph_distances)
@@ -58,6 +58,7 @@ class MapClass:
         # self.initialize_location(self.length, self.width, self.node_dimenstion)
         # self.list_edges = list_edges_distances
         self.netxgraph = networkx_graph
+        self.special_shape_map = special_shape_map
 
 ################################################
 ################# Class Functions - Initialize functions
@@ -93,7 +94,11 @@ class MapClass:
     def calculate_impact_matrix(self, matrix_graph_distances):
         if self.sigma == None:
             maxv = torch.max(matrix_graph_distances)
-            self.sigma = maxv / 1.5
+            if maxv > 1:
+                self.sigma = maxv / 3
+
+            else:
+                self.sigma = maxv / 1.5
 
         sigma2 = self.sigma * self.sigma
         print("sigma: ", self.sigma)
@@ -251,19 +256,19 @@ class MapClass:
 
     def visualize_rgb(self, history_number, labels=True):
         if self.weights.shape[1] == 3:
+            if self.special_shape_map != None:
+                special_map, special_lables = self.make_special_map(history_number, self.special_shape_map)
+                plt.imshow(special_map)
+                self.add_lables(history_number, labels, special_lables)
+                plt.show()
 
-            if (self.length*self.width) == self.amount_nodes:
+            elif (self.length*self.width) == self.amount_nodes:
 
                 tens_try = self.history[history_number].view(self.length, self.width, 3)
                 plt.imshow(tens_try)
-                if labels == True:
-                    classification = self.history_classifications[history_number]
-                    for i in range(len(classification)):
-                        loc_tuple = self.get_location(classification[i])
-                        plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
-                                 bbox=dict(facecolor='white', alpha=0.5, lw=0))
 
-                plt.show()
+
+
 
             elif (self.length*self.width) > self.amount_nodes:
                 ones_big = torch.ones(self.length*self.width, self.weights.shape[1])
@@ -290,6 +295,72 @@ class MapClass:
 
 
     #     print(map_display(map_.map))
+
+    def add_lables(self, history_number, labels, special_lables=None):
+
+        if labels == True:
+            if special_lables == None:
+                classification = self.history_classifications[history_number]
+            else:
+                classification = special_lables
+
+            for i in range(len(classification)):
+                loc_tuple = self.get_location(classification[i])
+                print("length classificaion1", len(classification))
+                print(classification[i])
+                print(loc_tuple)
+                print("length data_lables", len(self.data_lables))
+                print(self.data_lables[i])
+                plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                         bbox=dict(facecolor='white', alpha=0.5, lw=0))
+
+    def make_special_map(self, history_number, special_shape_map):
+        special_shape_tensor = torch.tensor(special_shape_map)
+
+        if special_shape_tensor.shape != tuple([self.length, self.width]):
+            print("to make a special map the special map shape has to match width and length")
+
+        else:
+            ones_big = torch.ones(self.length, self.width, self.weights.shape[1])
+
+            tensor_special_map = torch.tensor(special_shape_map)
+
+            p = 0
+
+            for l in range(tensor_special_map.shape[0]):
+                for w in range(tensor_special_map.shape[1]):
+                    if tensor_special_map[l][w] == 1:
+                        # print(w)
+                        ones_big[l][w][:] = self.history[history_number][p]
+                        # print("added at ", l, " ", w)
+                        # print(p)
+                        p += 1
+            # ones_big.view()
+
+            special_lables = None
+            if self.data_lables:
+                special_lables = []
+                p = 0
+                q = 0
+                for l in range(tensor_special_map.shape[0]):
+                    for w in range(tensor_special_map.shape[1]):
+                        if tensor_special_map[l][w] == 1:
+                            # print(w)
+                            if self.history_classifications[history_number][p] = q:
+
+                                special_lables.append(l* self.width + w)
+                                q += 1
+
+
+                            # print("added at ", l, " ", w)
+                            # print(p)
+                            p += 1
+                # ones_big.view()
+
+
+
+            return ones_big, special_lables
+
 
     def visualize_norgb(self, history_number, labels=True):
 

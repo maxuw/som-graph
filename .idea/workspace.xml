@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/classic_som.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classic_som.py" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/som_graph.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/som_graph.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/som_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/som_graph.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="284" column="91" selection-start-line="284" selection-start-column="91" selection-end-line="284" selection-end-column="91" />
+            <state relative-caret-position="580">
+              <caret line="357" column="28" selection-start-line="357" selection-start-column="28" selection-end-line="357" selection-end-column="28" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -65,8 +69,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="391" />
-    <option name="y" value="152" />
+    <option name="x" value="563" />
+    <option name="y" value="136" />
     <option name="width" value="1317" />
     <option name="height" value="857" />
   </component>
@@ -174,15 +178,15 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="34591000" />
+      <workItem from="1561842895958" duration="40593000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88374000" />
+    <option name="totallyTimeSpent" value="94376000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="391" y="152" width="1317" height="857" extended-state="0" />
+    <frame x="563" y="136" width="1317" height="857" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1355398" />
@@ -262,8 +266,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="284" column="91" selection-start-line="284" selection-start-column="91" selection-end-line="284" selection-end-column="91" />
+        <state relative-caret-position="580">
+          <caret line="357" column="28" selection-start-line="357" selection-start-column="28" selection-end-line="357" selection-end-column="28" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
