@@ -96,15 +96,16 @@ class MapClass:
         #     self.basic_visualization()
             # print(weights_display(weights_.weights))
 
-    def visualize_rgb(self):
+    def visualize_rgb(self, labels=True):
         tens_try = self.weights.view(self.length, self.width, 3)
         plt.imshow(tens_try)
 
-        self.classification = self.classify_all(self.convert_data_tensor(self.data))
-        for i in range(len(self.classification)):
-            loc_tuple = self.get_location(self.classification[i])
-            plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
-            bbox=dict(facecolor='white', alpha=0.5, lw=0))
+        if labels == True:
+            self.classification = self.classify_all(self.convert_data_tensor(self.data))
+            for i in range(len(self.classification)):
+                loc_tuple = self.get_location(self.classification[i])
+                plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                bbox=dict(facecolor='white', alpha=0.5, lw=0))
 
     # plt.text(0, 1, color_names[1], ha='center', va='center',
     #          bbox=dict(facecolor='white', alpha=0.5, lw=0))
@@ -112,26 +113,34 @@ class MapClass:
 
     #     print(map_display(map_.map))
 
-    def visualize_norgb(self):
+    def visualize_norgb(self, labels=True):
         tens_try = torch.ones(self.length, self.width, 3)
         plt.imshow(tens_try)
 
-        self.classification = self.classify_all(self.convert_data_tensor(self.data))
-        for i in range(len(self.classification)):
-            loc_tuple = self.get_location(self.classification[i])
-            plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
-                     bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
+        if labels == True:
+            self.classification = self.classify_all(self.convert_data_tensor(self.data))
+            for i in range(len(self.classification)):
+                loc_tuple = self.get_location(self.classification[i])
+                plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                         bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
         plt.show()
 
-    def large_cycle(self, verbose=False, draw_every_epoch=10, rgb=False):
-        if rgb: self.visualize_rgb()
-        #     print(map_display(map_.map))
+    def large_cycle(self, verbose=False, draw_every_epoch=10, drawtype=None, labels=True):
+
         for i in range(self.number_iterations):
             self.cycle(self.trainloader, verbose)
-            if draw_every_epoch != False and rgb:
-                if i % draw_every_epoch == 0: self.visualize_rgb()
-        if rgb: self.visualize_rgb()
-        else: self.visualize_norgb()
+
+            if i % draw_every_epoch == 0 and draw_every_epoch != 0: self.draw_function(drawtype, labels)
+
+        if draw_every_epoch != 0: self.draw_function(drawtype, labels)
+
+    def draw_function(self, drawtype, labels):
+
+        if drawtype == "rbg": self.visualize_rgb(labels)
+        elif drawtype == "black-white": self.basic_visualization(labels)
+        else:
+            if drawtype =="labels":
+                self.visualize_norgb(labels)
 
 
     def initialize_locations(self, weights):
@@ -166,9 +175,18 @@ class MapClass:
         return (dist.cdf(-distance_matrix))
 
 
-    def basic_visualization(self):
+    def basic_visualization(self, labels):
+        plt.style.use('grayscale')
         plt.imshow(self.weights_to_map());
         plt.colorbar()
+
+        if labels == True:
+            self.classification = self.classify_all(self.convert_data_tensor(self.data))
+            for i in range(len(self.classification)):
+                loc_tuple = self.get_location(self.classification[i])
+                plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+                         bbox=dict(facecolor="none", alpha=0.5, lw=0), fontsize=5)
+
         plt.show()
 
     def weights_to_map(self): #old map_display
