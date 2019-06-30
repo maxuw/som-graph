@@ -97,9 +97,24 @@ map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigm
 
 map1
 
+row_data = torch.tensor([0., 0., 0.])
+
 map1.matrix_graph_weights
 
-map1.calculate_impact_matrix(map1.matrix_graph_weights)
+impact_matrix = map1.calculate_impact_matrix(map1.matrix_graph_weights)
+impact_matrix
+
+map1.weights - row_data
+
+difference = row_data - map1.weights
+difference
+
+change_row = difference * impact_matrix[1].view(4, 1)
+change_row
+
+change_row * learning_rate
+
+map1.move_closer(1, row_data)
 
 map1.sigma
 
