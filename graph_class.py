@@ -37,3 +37,13 @@ class Graph:
             matrix = self.add_edge(matrix, edge[0], edge[1], edge[2])
 
         return matrix
+
+    def make_list_edges_distances(self, matrix):
+        list_edges_weights = []
+        for i in range(len(matrix)):
+            for j in range(len(matrix)):
+                if j != i and not j>i:
+                    list_elem = [i, j, matrix[i][j].item()]
+        #             print(list_elem)
+                    list_edges_weights.append(tuple(list_elem))
+        return list_edges_weights

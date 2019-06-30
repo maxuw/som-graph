@@ -116,6 +116,8 @@ change_row * learning_rate
 
 map1.move_closer(1, row_data)
 
+
+
 map1.sigma
 
 type(map1.sigma)
