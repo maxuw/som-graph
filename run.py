@@ -46,6 +46,26 @@ rgb_lables = \
 
 
 
+# +
+# Network configuration
+
+data = rgb_colors
+data_lables = rgb_lables
+batch_size = 2
+
+
+sigma = None
+
+# for now amount_verticies has to be a multiplication of length and width
+length = 10
+width = 10
+number_epochs = 100
+shuffle = True
+
+learning_rate = 0.01
+# -
+
+
 
 
 #buildings data
@@ -82,27 +102,8 @@ edges1 = graph1.generate_edges(amount_nodes, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
 # -
 
-matrix2 = graph1.standard_som_matrix(amount_nodes)
-
-# +
-# Network configuration
-
-data = rgb_colors
-data_lables = rgb_lables
-batch_size = 2
-
-
-sigma = None
-
-# for now amount_verticies has to be a multiplication of length and width
-length = 10
-width = 10
-number_epochs = 100
-shuffle = True
-
-learning_rate = 0.01
-# -
-
+matrix2 = graph1.standard_som_distance_matrix(4, 3)
+matrix2
 
 map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle)
 

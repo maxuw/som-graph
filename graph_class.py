@@ -51,20 +51,20 @@ class Graph:
         return list_edges_weights
 
     @staticmethod
-    def node_locations(m, n):
-        for i in range(m):
-            for j in range(n):
+    def node_locations(length, width):
+        for i in range(length):
+            for j in range(width):
                 yield np.array([i, j])
 
     @staticmethod
     def dist(u, v):
         return math.sqrt((u - v).pow(2).sum())
 
-    def standard_som_matrix(self, amount_nodes):
-        locations = torch.FloatTensor(np.array(list(self.node_locations(amount_nodes, amount_nodes))))
-        dists = torch.empty(amount_nodes * amount_nodes, amount_nodes * amount_nodes)
-        for i in range(amount_nodes * amount_nodes):
-            for j in range(amount_nodes * amount_nodes):
+    def standard_som_distance_matrix(self, length, width):
+        locations = torch.FloatTensor(np.array(list(self.node_locations(length, width))))
+        dists = torch.empty(length * width, length * width)
+        for i in range(length * width):
+            for j in range(length * width):
                 dists[i][j] = self.dist(locations[i], locations[j])
 
         return dists
