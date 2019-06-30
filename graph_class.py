@@ -47,3 +47,22 @@ class Graph:
         #             print(list_elem)
                     list_edges_weights.append(tuple(list_elem))
         return list_edges_weights
+
+    @staticmethod
+    def vert_locations(m, n):
+        for i in range(m):
+            for j in range(n):
+                yield np.array([i, j])
+
+    @staticmethod
+    def dist(u, v):
+        return math.sqrt((u - v).pow(2).sum())
+
+    def standard_som_matrix(self, m, n):
+        locations = torch.FloatTensor(np.array(list(self.vert_locations(m, n))))
+        dists = torch.empty(m * n, m * n)
+        for i in range(m * n):
+            for j in range(m * n):
+                dists[i][j] = self.dist(locations[i], locations[j])
+
+        return dists

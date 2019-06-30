@@ -144,4 +144,6 @@ plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=100, drawtype=drawtype, labels=labels)
 # -
 
+matrix2 = graph1.std_som_matrix(length, width)
+
 
