@@ -1,7 +1,10 @@
 import torch
+import networkx as nx
 import random
 import numpy as np
 import math
+
+
 
 class Graph:
 
@@ -76,3 +79,9 @@ class Graph:
     #     for i in range(m):
     #         for j in range(n):
     #             locations([i, j])
+
+    def build_networkx_graph(self, list_edges_distances):
+        g = nx.Graph()
+        g.add_weighted_edges_from(list_edges_distances)
+
+        return g

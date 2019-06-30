@@ -128,4 +128,11 @@ map1.large_cycle(draw_every_epoch=100, drawtype=drawtype, labels=labels)
 
 
 
+list_edges = graph1.make_list_edges_distances(matrix1)
+# list_edges
+
+netxgraph1 = graph1.build_networkx_graph(list_edges)
+
+map1.visualize_networkx(netxgraph1)
+
 

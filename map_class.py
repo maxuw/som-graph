@@ -4,7 +4,7 @@ import torch.utils.data
 from torch.distributions.normal import Normal
 import matplotlib.pyplot as plt
 import math
-
+import networkx as nx
 
 class MapClass:
 
@@ -40,6 +40,8 @@ class MapClass:
 
         self.impact_matrix = self.calculate_impact_matrix(self.matrix_graph_weights)
 
+        self.history = []
+        self.history.append(self.weights)
 
         # self.initialize_location(self.length, self.width, self.node_dimenstion)
 
@@ -141,6 +143,10 @@ class MapClass:
             if i % draw_every_epoch == 0 and draw_every_epoch != 0: self.draw_function(drawtype, labels)
 
         if draw_every_epoch != 0: self.draw_function(drawtype, labels)
+
+        self.history.append(self.weights)
+
+    
 
     def draw_function(self, drawtype, labels):
 
@@ -248,3 +254,24 @@ class MapClass:
         trainloader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=shuffle)
 
         return trainloader, dim, number_rows_data
+
+
+    def visualize_networkx(self, nx_graph, labels=True):
+        nx.draw(nx_graph, with_labels=True)
+        plt.draw()
+        plt.show()
+
+
+        # tens_try = self.weights.view(self.length, self.width, 3)
+        # plt.imshow(tens_try)
+        #
+        # if labels == True:
+        #     self.classification = self.classify_all(self.convert_data_tensor(self.data))
+        #     for i in range(len(self.classification)):
+        #         loc_tuple = self.get_location(self.classification[i])
+        #         plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
+        #         bbox=dict(facecolor='white', alpha=0.5, lw=0))
+
+    # plt.text(0, 1, color_names[1], ha='center', va='center',
+    #          bbox=dict(facecolor='white', alpha=0.5, lw=0))
+        plt.show()
