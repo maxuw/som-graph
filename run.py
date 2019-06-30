@@ -100,46 +100,45 @@ graph1 = Graph()
 matrix1 = graph1.create_matrix(amount_nodes)
 edges1 = graph1.generate_edges(amount_nodes, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
+list_edges = graph1.make_list_edges_distances(matrix1)
+netxgraph1 = graph1.build_networkx_graph(list_edges)
 
 # +
 # matrix2 = graph1.standard_som_distance_matrix(4, 3)
 # matrix2
 # -
 
-map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle)
+map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle, netxgraph1)
 
 # +
+# ### Drawing configuration
+
 # drawtype="rbg" tries to draw colors on map - needs an input data with 3 vectors
 
 # drawtype="black-white" draws black-white
+# drawtype="networkx" graph drawing using the networkx library
 # drawtype="None" - default draws empty space
 
-# labels=True or False draws labels on the map... labels are necessary...
-labels=True
+# Also there is networkx graph drawing
 
-drawtype = "rbg"
+# labels=True or False draws labels on the map... labels are necessary...
+
 
 # draw_every_epoch=0 Don't draw anything
 # draw_every_epoch=10 draw every 10 epochs
+# -
 
+labels=True
+drawtype = "rbg"
 
-plt.rcParams['figure.dpi'] = 150
+# +
+# Going through a large cycle combining of number of iteration whole cycles
+
 map1.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 # -
 
-map1.history[0][0:5]
-
-map1.history[1][0:5]
-
+# Drawing all the history
+plt.rcParams['figure.dpi'] = 150
 map1.draw_all(drawtype, labels=labels)
 
-
-
-list_edges = graph1.make_list_edges_distances(matrix1)
-# list_edges
-
-netxgraph1 = graph1.build_networkx_graph(list_edges)
-
-map1.visualize_networkx(netxgraph1)
-
-
+map1.draw_all(drawtype="networkx", labels=labels)

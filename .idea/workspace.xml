@@ -18,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="76" column="27" lean-forward="true" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
+            <state relative-caret-position="560">
+              <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -30,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graph_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
+            <state relative-caret-position="509">
               <caret line="84" column="54" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
@@ -63,8 +63,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="481" />
-    <option name="y" value="87" />
+    <option name="x" value="400" />
+    <option name="y" value="123" />
     <option name="width" value="1317" />
     <option name="height" value="857" />
   </component>
@@ -172,15 +172,15 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="24403000" />
+      <workItem from="1561842895958" duration="27527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78186000" />
+    <option name="totallyTimeSpent" value="81310000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="481" y="87" width="1317" height="857" extended-state="0" />
+    <frame x="400" y="123" width="1317" height="857" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1355398" />
@@ -250,7 +250,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graph_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
+        <state relative-caret-position="509">
           <caret line="84" column="54" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
@@ -260,8 +260,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="76" column="27" lean-forward="true" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
+        <state relative-caret-position="560">
+          <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>

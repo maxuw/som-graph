@@ -11,7 +11,9 @@ class MapClass:
 ################################################
 ################# Initialization
 
-    def __init__(self, data, length, width, learning_rate, number_iterations, matrix_graph_weights, sigma=None, data_lables=None, batch_size=4, shuffle=True):
+    def __init__(self, data, length, width, learning_rate, number_iterations,
+                 matrix_graph_weights, sigma=None, data_lables=None, batch_size=4,
+                 shuffle=True, networkx_graph=None):
         # print("dupa")
 
         self.matrix_graph_weights_dim = len(matrix_graph_weights)
@@ -46,14 +48,15 @@ class MapClass:
 
 
         self.history.append(self.weights.clone())
-        print(self.weights[0:5])
-        print(self.history[0][0:5])
+        # print(self.weights[0:5])
+        # print(self.history[0][0:5])
 
         self.history_classifications = []
         self.history_classifications.append(self.classify_all(self.convert_data_tensor(self.data)))
 
         # self.initialize_location(self.length, self.width, self.node_dimenstion)
-
+        # self.list_edges = list_edges_distances
+        self.netxgraph = networkx_graph
 
 ################################################
 ################# Class Functions - Initialize functions
@@ -212,8 +215,14 @@ class MapClass:
 ################# Visualizations
 
     def draw_all(self, drawtype="squares", labels=True):
-        for i in range(len(self.history)):
-            self.draw_function(i, drawtype, labels)
+        if drawtype == "networkx":
+
+            self.visualize_networkx(self.netxgraph)
+
+        else:
+
+            for i in range(len(self.history)):
+                self.draw_function(i, drawtype, labels)
 
     def draw_function(self, history_number, drawtype, labels):
 
@@ -268,9 +277,32 @@ class MapClass:
         plt.show()
 
     def visualize_networkx(self, nx_graph, labels=True):
-        nx.draw(nx_graph, with_labels=True)
-        plt.draw()
-        plt.show()
+        pos = nx.spring_layout(nx_graph)
+
+
+        for j in range(len(self.history)):
+            classification = self.history_classifications[j]
+
+            labels = dict()
+
+            for i in range(self.matrix_graph_weights_dim):
+                labels[i] = str(i)
+
+            for i in range(len(classification)):
+                labels[classification[i]] = self.data_lables[i]
+
+            nx.draw(nx_graph, pos=pos, node_size=(100000/self.matrix_graph_weights_dim), with_labels=False)
+            nx.draw_networkx_labels(nx_graph, pos, labels)
+            plt.draw()
+            plt.show()
+
+        # nx.draw(nx_graph, pos=pos, node_size=(10000/self.matrix_graph_weights_dim), with_labels=False)
+        # nx.draw_networkx_labels(nx_graph, pos, labels)
+
+
+        # nx.draw(nx_graph, with_labels=True)
+        # plt.draw()
+        # plt.show()
 
 
         # tens_try = self.weights.view(self.length, self.width, 3)
