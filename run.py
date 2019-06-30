@@ -65,15 +65,23 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # Graph setup
 # -
 
-amount_vertecies = 4
+amount_vertecies = 5
 percent_edges = 0.5
 
-
+# +
+# using graph class to generate matrix
 
 graph1 = Graph()
+
+# +
+# matrix genaration
+
 matrix1 = graph1.create_matrix(amount_vertecies)
 edges1 = graph1.generate_edges(amount_vertecies, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
+# -
+
+matrix2 = graph1.standard_som_matrix(amount_vertecies, amount_vertecies)
 
 # +
 # Network configuration
@@ -84,8 +92,8 @@ batch_size = 2
 
 
 sigma = None
-length = 2
-width = 2
+length = 5
+width = 5
 number_epochs = 100
 shuffle = True
 
@@ -94,36 +102,6 @@ learning_rate = 0.01
 
 
 map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, sigma, data_lables, batch_size, shuffle)
-
-map1
-
-row_data = torch.tensor([0., 0., 0.])
-
-map1.matrix_graph_weights
-
-impact_matrix = map1.calculate_impact_matrix(map1.matrix_graph_weights)
-impact_matrix
-
-map1.weights - row_data
-
-difference = row_data - map1.weights
-difference
-
-change_row = difference * impact_matrix[1].view(4, 1)
-change_row
-
-change_row * learning_rate
-
-map1.move_closer(1, row_data)
-
-
-
-map1.sigma
-
-type(map1.sigma)
-
-# +
-# map1.weights
 
 # +
 # drawtype="rbg" tries to draw colors on map - needs an input data with 3 vectors
@@ -144,6 +122,6 @@ plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=100, drawtype=drawtype, labels=labels)
 # -
 
-matrix2 = graph1.std_som_matrix(length, width)
+
 
 

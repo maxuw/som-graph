@@ -1,5 +1,7 @@
 import torch
 import random
+import numpy as np
+import math
 
 class Graph:
 
@@ -49,7 +51,7 @@ class Graph:
         return list_edges_weights
 
     @staticmethod
-    def vert_locations(m, n):
+    def node_locations(m, n):
         for i in range(m):
             for j in range(n):
                 yield np.array([i, j])
@@ -58,11 +60,19 @@ class Graph:
     def dist(u, v):
         return math.sqrt((u - v).pow(2).sum())
 
-    def standard_som_matrix(self, m, n):
-        locations = torch.FloatTensor(np.array(list(self.vert_locations(m, n))))
-        dists = torch.empty(m * n, m * n)
-        for i in range(m * n):
-            for j in range(m * n):
+    def standard_som_matrix(self, amount_nodes):
+        locations = torch.FloatTensor(np.array(list(self.node_locations(amount_nodes, amount_nodes))))
+        dists = torch.empty(amount_nodes * amount_nodes, amount_nodes * amount_nodes)
+        for i in range(amount_nodes * amount_nodes):
+            for j in range(amount_nodes * amount_nodes):
                 dists[i][j] = self.dist(locations[i], locations[j])
 
         return dists
+
+
+    # @staticmethod
+    # def node_locations(m, n):
+    #     locations = torch.zeros(m, n)
+    #     for i in range(m):
+    #         for j in range(n):
+    #             locations([i, j])
