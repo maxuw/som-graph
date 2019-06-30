@@ -15,10 +15,8 @@
 
 import torch
 
-import numpy as np
+# import numpy as np
 import matplotlib.pyplot as plt
-
-import random
 
 from map_class import MapClass
 from graph_class import Graph
@@ -80,8 +78,8 @@ matrix1 = graph1.add_edges(matrix1, edges1)
 # +
 # Network configuration
 
-data = gray_colors
-data_lables = gray_colors_lables
+data = rgb_colors
+data_lables = rgb_lables
 batch_size = 2
 
 length = 10
@@ -107,7 +105,7 @@ map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix1, data
 # labels=True or False draws labels on the map... labels are necessary...
 labels=True
 
-drawtype = "black-white"
+drawtype = "rbg"
 
 # draw_every_epoch=0 Don't draw anything
 # draw_every_epoch=10 draw every 10 epochs
@@ -115,12 +113,3 @@ drawtype = "black-white"
 
 plt.rcParams['figure.dpi'] = 150
 map1.large_cycle(draw_every_epoch=100, drawtype=drawtype, labels=labels)
-# -
-
-plt.style.use('grayscale')
-plt.imshow(map1.weights_to_map());
-plt.colorbar()
-plt.show()
-
-plt.style.use('grayscale')
-
