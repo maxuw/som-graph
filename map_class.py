@@ -17,10 +17,11 @@ class MapClass:
         # print("dupa")
 
         self.amount_nodes = len(matrix_graph_distances)
-        if self.amount_nodes > length*width:
-            raise NameError('matrix_graph_distances has to equal length*width')
-        if len(matrix_graph_distances.shape) != 2 or matrix_graph_distances.shape[0] != matrix_graph_distances.shape[1]:
-            raise NameError('invalid matrix_graph_distances')
+
+        # if self.amount_nodes > length*width:
+        #     raise NameError('matrix_graph_distances has to equal length*width')
+        # if len(matrix_graph_distances.shape) != 2 or matrix_graph_distances.shape[0] != matrix_graph_distances.shape[1]:
+        #     raise NameError('invalid matrix_graph_distances')
 
         self.length = length
         self.width = width
@@ -42,7 +43,7 @@ class MapClass:
         self.history = []
 
         self.weights = self.initialize_weights(self.length, self.width, self.node_dimenstion)
-        self.locations = self.initialize_locations(self.weights)
+        # self.locations = self.initialize_locations(self.weights)
 
         self.impact_matrix = self.calculate_impact_matrix(self.matrix_graph_distances)
 
@@ -74,24 +75,19 @@ class MapClass:
 
 
     def initialize_weights(self, length, width, dimention):
-        weights_init = torch.rand((length * width, dimention))
+        weights_init = torch.rand((self.amount_nodes, dimention))
 
         # self.history.append(weights_init)
         return weights_init
 
-    @staticmethod
-    def gaussex(x, sigma2):
-        if x == -1:
-            return 0
-        return math.exp(-x ** 2 / sigma2)
 
-    def initialize_locations(self, weights):
-        locations = []
-        for i in range(len(weights)):
-            location = self.get_location(i)
-            locations.append(location)
-            # print(location)
-        return locations
+    # def initialize_locations(self, weights):
+    #     locations = []
+    #     for i in range(len(weights)):
+    #         location = self.get_location(i)
+    #         locations.append(location)
+    #         # print(location)
+    #     return locations
 
 
     def calculate_impact_matrix(self, matrix_graph_distances):
@@ -115,6 +111,12 @@ class MapClass:
 
 ################################################
 ################# SOM core algorithms
+
+    @staticmethod
+    def gaussex(x, sigma2):
+        if x == -1:
+            return 0
+        return math.exp(-x ** 2 / sigma2)
 
     def get_location(self, node_number):
 

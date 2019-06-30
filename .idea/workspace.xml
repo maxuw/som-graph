@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/classic_som.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classic_som.py" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/som_graph.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/som_graph.ipynb" afterDir="false" />
     </list>
@@ -18,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1120">
-              <caret line="139" column="54" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
+            <state relative-caret-position="400">
+              <caret line="20" selection-start-line="20" selection-end-line="23" selection-end-column="63" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -47,6 +45,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>get_location</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -172,12 +175,12 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="32392000" />
+      <workItem from="1561842895958" duration="32951000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86175000" />
+    <option name="totallyTimeSpent" value="86734000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="333" y="120" width="1317" height="857" extended-state="0" />
@@ -260,8 +263,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1120">
-          <caret line="139" column="54" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
+        <state relative-caret-position="400">
+          <caret line="20" selection-start-line="20" selection-end-line="23" selection-end-column="63" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
