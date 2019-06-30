@@ -7,11 +7,11 @@ class Graph:
 
     # def __init__(self):
 
-    def create_matrix(self, amount_vertecies):
+    def create_matrix(self, amount_nodes):
         # jn
-        matrix_graph_weights = torch.empty(amount_vertecies, amount_vertecies)
-        for i in range(amount_vertecies):
-            for j in range(amount_vertecies):
+        matrix_graph_weights = torch.empty(amount_nodes, amount_nodes)
+        for i in range(amount_nodes):
+            for j in range(amount_nodes):
                 matrix_graph_weights[i][j] = 0 if i == j else 1
 
         return matrix_graph_weights
@@ -24,12 +24,12 @@ class Graph:
 
         return matrix
 
-    def generate_edges(self, amount_vertecies, percent_edges):
-        amount_edges = int((amount_vertecies ** 2) * percent_edges)
+    def generate_edges(self, amount_nodes, percent_edges):
+        amount_edges = int((amount_nodes ** 2) * percent_edges)
         print(amount_edges)
         edges = []
         for i in range(amount_edges):
-            edge = [random.randint(0, amount_vertecies - 1), random.randint(0, amount_vertecies - 1), random.random()]
+            edge = [random.randint(0, amount_nodes - 1), random.randint(0, amount_nodes - 1), random.random()]
             edges.append(edge)
 
         return edges

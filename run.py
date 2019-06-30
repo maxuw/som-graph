@@ -65,7 +65,8 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # Graph setup
 # -
 
-amount_vertecies = 5
+# for now amount_verticies has to be a multiplication of length and width
+amount_nodes = 10
 percent_edges = 0.5
 
 # +
@@ -76,12 +77,12 @@ graph1 = Graph()
 # +
 # matrix genaration
 
-matrix1 = graph1.create_matrix(amount_vertecies)
-edges1 = graph1.generate_edges(amount_vertecies, percent_edges)
+matrix1 = graph1.create_matrix(amount_nodes)
+edges1 = graph1.generate_edges(amount_nodes, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
 # -
 
-matrix2 = graph1.standard_som_matrix(amount_vertecies, amount_vertecies)
+matrix2 = graph1.standard_som_matrix(amount_nodes)
 
 # +
 # Network configuration
@@ -92,8 +93,10 @@ batch_size = 2
 
 
 sigma = None
-length = 5
-width = 5
+
+# for now amount_verticies has to be a multiplication of length and width
+length = 10
+width = 10
 number_epochs = 100
 shuffle = True
 
