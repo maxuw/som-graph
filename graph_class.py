@@ -219,7 +219,17 @@ class Graph:
             if type(item) == int:
                 target_node = self.get_node(item, map_)
                 if verbose==True: print("connecting ", node_number, " ", target_node)
-                new_matrix = self.add_edge(new_matrix, node_number, target_node, 0.25)
+                new_matrix = self.add_edge(new_matrix, node_number, target_node, 0.2)
+
+                list_second_connection = self.look_around_by_node_number(item, map_)
+
+                for second_conn in list_second_connection:
+                    if type(second_conn) == int and second_conn != node_number:
+                        print(second_conn)
+                        target_node = self.get_node(second_conn, map_)
+                        print(target_node)
+                        if verbose == True: print("making second connection ", node_number, " ", target_node)
+                        new_matrix = self.add_edge(new_matrix, node_number, second_conn, 0.4)
         return new_matrix
 
     def add_small_distance_to_nearby_nodes(self, shape_map_human, distance_matrix, verbose=False):

@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/scratchpad-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/scratchpad-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/som_graph-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/som_graph-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Untitled.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classic_som.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classic_som.py" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/make_edges_graph.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/make_edges_graph.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/make_edges_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/make_edges_graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scratchpad.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scratchpad.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/som_graph.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/som_graph.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/som_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/som_graph.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,10 +15,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
+            <state relative-caret-position="-353">
               <caret line="268" column="55" selection-start-line="268" selection-start-column="55" selection-end-line="268" selection-end-column="55" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
@@ -34,14 +27,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graph_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="220" column="34" selection-start-line="220" selection-start-column="34" selection-end-line="220" selection-end-column="34" />
+            <state relative-caret-position="102">
+              <caret line="228" selection-start-line="228" selection-end-line="228" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda3/envs/torch/lib/python3.7/site-packages/torch/tensor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="417" selection-start-line="417" selection-end-line="417" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Untitled1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -69,14 +80,14 @@
         <option value="$PROJECT_DIR$/map.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/map_graph_class.py" />
-        <option value="$PROJECT_DIR$/graph_class.py" />
         <option value="$PROJECT_DIR$/map_class.py" />
+        <option value="$PROJECT_DIR$/graph_class.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="544" />
-    <option name="y" value="133" />
+    <option name="x" value="1181" />
+    <option name="y" value="279" />
     <option name="width" value="1317" />
     <option name="height" value="857" />
   </component>
@@ -103,7 +114,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/som_graph.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Untitled1.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -161,7 +172,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/som_graph.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Untitled1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -184,12 +195,12 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="55376000" />
+      <workItem from="1561842895958" duration="58361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109159000" />
+    <option name="totallyTimeSpent" value="112144000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -201,16 +212,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="544" y="133" width="1317" height="857" extended-state="0" />
-    <editor active="true" />
+    <frame x="1181" y="279" width="1317" height="857" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1355398" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1355398" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3219927" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21655172" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.49931034" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21655172" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.49931034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.1724138" />
@@ -223,8 +233,8 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49823943" visible="true" weight="0.085894406" />
-      <window_info anchor="right" x="0" y="0" width="323" height="738" id="Documentation" order="4" sideWeight="0.50176054" side_tool="true" visible="true" weight="0.085894406" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.5123967" visible="true" weight="0.085894406" />
+      <window_info anchor="right" x="0" y="0" width="323" height="738" id="Documentation" order="4" sideWeight="0.4876033" side_tool="true" visible="true" weight="0.085894406" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
   </component>
@@ -289,6 +299,11 @@
           <line>352</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Untitled1.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -302,7 +317,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/max_som$max_som.coverage" NAME="max-som Coverage Results" MODIFIED="1561414857243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/max_som_graph$max_som.coverage" NAME="max-som Coverage Results" MODIFIED="1561817179182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/max_som_graph_jan$max_som.coverage" NAME="max-som Coverage Results" MODIFIED="1561939363436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/max_som_graph_jan$max_som.coverage" NAME="max-som Coverage Results" MODIFIED="1561990956913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/map.py" />
@@ -330,20 +345,34 @@
     <entry file="file://$PROJECT_DIR$/som_graph.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/graph_class.py">
+    <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="220" column="34" selection-start-line="220" selection-start-column="34" selection-end-line="220" selection-end-column="34" />
+        <state relative-caret-position="-353">
+          <caret line="268" column="55" selection-start-line="268" selection-start-column="55" selection-end-line="268" selection-end-column="55" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/map_class.py">
+    <entry file="file://$PROJECT_DIR$/Untitled1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="268" column="55" selection-start-line="268" selection-start-column="55" selection-end-line="268" selection-end-column="55" />
+        <state relative-caret-position="102">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/torch/lib/python3.7/site-packages/torch/tensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="417" selection-start-line="417" selection-end-line="417" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="228" selection-start-line="228" selection-end-line="228" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>

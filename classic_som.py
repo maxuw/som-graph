@@ -57,8 +57,8 @@ special_shape_map = None
 sigma = 11
 
 # for now amount_verticies has to be a multiplication of length and width
-length = 50
-width = 50
+length = 60
+width = 60
 number_epochs = 1000
 shuffle = True
 
@@ -74,8 +74,6 @@ building_sizes = [[0.1, 0.3], [0.1, 0.2], [1., 1.], [0.125, 0.2], [0.529, 0.12],
 
 building_labels = building_sizes
 
-
-
 #Training inputs for RGBcolors
 gray_colors = [[0.1], [0.], [1.], [0.125], [0.529], [0.9], [0.33], [0.4], [0.67], [.33], [.5]]
 
@@ -86,7 +84,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 2500
+amount_nodes = 3600
 percent_edges = 0.5
 
 # +
