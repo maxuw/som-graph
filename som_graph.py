@@ -56,8 +56,6 @@ shape_map_human = \
     [0,0,1,0,1,0,0]]
     
 
-shape_map_human
-
 # +
 # Network configuration
 
@@ -115,6 +113,11 @@ edges1 = graph1.generate_edges(amount_nodes, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
 list_edges = graph1.make_list_edges_distances(matrix1)
 netxgraph1 = graph1.build_networkx_graph(list_edges)
+# -
+
+human_matrix = graph1.create_matrix(56)
+
+human_matrix
 
 # +
 # matrix1
@@ -168,33 +171,3 @@ map1.draw_all(drawtype, labels=labels)
 map1.history_classifications
 
 map1.draw_all(drawtype="networkx", labels=labels)
-
-# +
-ones_big = torch.ones(length, width, map1.weights.shape[1])
-
-tensor_human = torch.tensor(shape_map_human)
-
-tensor_human.shape
-
-ones_big.shape
-
-map1.weights.shape
-
-p = 0
-
-for l in range(tensor_human.shape[0]):
-    for w in range(tensor_human.shape[1]):
-        if tensor_human[l][w] == 1:
-            print(w)
-            ones_big[l][w][:] = map1.weights[p]
-            print("added at ", l, " ", w )
-            print(p)
-            p += 1
-            
-# -
-
-ones_big.view(length, width, 3)
-
-plt.imshow(ones_big)
-
-

@@ -257,9 +257,9 @@ class MapClass:
     def visualize_rgb(self, history_number, labels=True):
         if self.weights.shape[1] == 3:
             if self.special_shape_map != None:
-                special_map, special_lables = self.make_special_map(history_number, self.special_shape_map)
+                special_map = self.make_special_map(history_number, self.special_shape_map)
                 plt.imshow(special_map)
-                self.add_lables(history_number, labels, special_lables)
+                self.add_lables(history_number, labels)#, special_lables)
                 plt.show()
 
             elif (self.length*self.width) == self.amount_nodes:
@@ -296,21 +296,21 @@ class MapClass:
 
     #     print(map_display(map_.map))
 
-    def add_lables(self, history_number, labels, special_lables=None):
+    def add_lables(self, history_number, labels):
 
         if labels == True:
-            if special_lables == None:
+            if self.special_shape_map == None:
                 classification = self.history_classifications[history_number]
             else:
-                classification = special_lables
+                classification = [self.location_special_map(x) for x in self.history_classifications[history_number]]
 
             for i in range(len(classification)):
                 loc_tuple = self.get_location(classification[i])
-                print("length classificaion1", len(classification))
-                print(classification[i])
-                print(loc_tuple)
-                print("length data_lables", len(self.data_lables))
-                print(self.data_lables[i])
+                # print("length classificaion1", len(classification))
+                # print(classification[i])
+                # print(loc_tuple)
+                # print("length data_lables", len(self.data_lables))
+                # print(self.data_lables[i])
                 plt.text(loc_tuple[1], loc_tuple[0], self.data_lables[i], ha='center', va='center',
                          bbox=dict(facecolor='white', alpha=0.5, lw=0))
 
@@ -337,29 +337,29 @@ class MapClass:
                         p += 1
             # ones_big.view()
 
-            special_lables = None
-            if self.data_lables:
-                special_lables = []
-                p = 0
-                q = 0
-                for l in range(tensor_special_map.shape[0]):
-                    for w in range(tensor_special_map.shape[1]):
-                        if tensor_special_map[l][w] == 1:
-                            # print(w)
-                            if self.history_classifications[history_number][p] = q:
+            # special_lables = None
+            # if self.data_lables:
+            #     special_lables = []
+            #     p = 0
+            #     q = 0
+            #     for l in range(tensor_special_map.shape[0]):
+            #         for w in range(tensor_special_map.shape[1]):
+            #             if tensor_special_map[l][w] == 1:
+            #                 # print(w)
+            #                 if p in self.history_classifications[history_number]:
+            #
+            #                     special_lables.append(l* self.width + w)
+            #                     # q += 1
+            #
+            #
+            #                 # print("added at ", l, " ", w)
+            #                 # print(p)
+            #                 p += 1
+            #     # ones_big.view()
 
-                                special_lables.append(l* self.width + w)
-                                q += 1
 
 
-                            # print("added at ", l, " ", w)
-                            # print(p)
-                            p += 1
-                # ones_big.view()
-
-
-
-            return ones_big, special_lables
+            return ones_big#, special_lables
 
 
     def visualize_norgb(self, history_number, labels=True):
@@ -418,6 +418,25 @@ class MapClass:
     # plt.text(0, 1, color_names[1], ha='center', va='center',
     #          bbox=dict(facecolor='white', alpha=0.5, lw=0))
         plt.show()
+
+
+    def location_special_map(self, num):
+        counter_1 = 0
+        counter_0 = 0
+        for i in range(len(self.special_shape_map)):
+            for j in range(len(self.special_shape_map[i])):
+                #             print(i, j)
+
+                if self.special_shape_map[i][j] == 1:
+
+                    # print(counter_1)
+                    if counter_1 == num:
+                        # print("return: ", counter_0, counter_1)
+                        return counter_0 + counter_1
+                    counter_1 += 1
+                else:
+                    counter_0 += 1
+
 
 ################################################
 ################# Random
