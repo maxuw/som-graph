@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # ---
 # jupyter:
 #   jupytext:
@@ -237,7 +236,5 @@ map2.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 # Drawing all the history
 plt.rcParams['figure.dpi'] = 150
 map2.draw_all(drawtype, labels=labels)
-
-# Na razie generaltor wag generuje je tylko do najbliższych pól. Gdyby generował dalej mapa działałaby lepiej, ale ktoś może sobie wgrać dowolną mapę z wagami.
 
 

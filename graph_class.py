@@ -211,25 +211,40 @@ class Graph:
 
     def connect_with_around(self, node_number, map_, matrix, verbose=False):
         # print(graph1)
-        list_connections = self.look_around_by_node_number(node_number, map_)
+        list_connections_positions = self.look_around_by_node_number(node_number, map_)
 
         new_matrix = matrix
-        for item in list_connections:
+        for item in list_connections_positions:
             # print(type(item))
             if type(item) == int:
                 target_node = self.get_node(item, map_)
                 if verbose==True: print("connecting ", node_number, " ", target_node)
                 new_matrix = self.add_edge(new_matrix, node_number, target_node, 0.2)
 
-                list_second_connection = self.look_around_by_node_number(item, map_)
+                list_second_connection_positions = self.look_around_by_node_number(target_node, map_)
 
-                for second_conn in list_second_connection:
-                    if type(second_conn) == int and second_conn != node_number:
-                        print(second_conn)
-                        target_node = self.get_node(second_conn, map_)
-                        print(target_node)
-                        if verbose == True: print("making second connection ", node_number, " ", target_node)
-                        new_matrix = self.add_edge(new_matrix, node_number, second_conn, 0.4)
+                for second_conn in list_second_connection_positions:
+                    if type(second_conn) == int:
+                        # print(second_conn)
+                        target_second_node = self.get_node(second_conn, map_)
+                        if target_second_node != node_number:
+                            # print(target_second_node)
+                            if verbose == True: print("making second connection ", node_number, " ", target_node)
+                            new_matrix = self.add_edge(new_matrix, node_number, target_second_node, 0.4)
+
+                            list_third_connection_positions = self.look_around_by_node_number(target_second_node, map_)
+
+                            for third_conn in list_third_connection_positions:
+                                if type(third_conn) == int:
+                                    # print(third_conn)
+                                    target_third_node = self.get_node(third_conn, map_)
+                                    if target_third_node != target_second_node:
+                                        # print(target_third_node)
+                                        if verbose == True: print("making third connection ", node_number, " ",
+                                                                  target_node)
+                                        new_matrix = self.add_edge(new_matrix, node_number, target_third_node, 0.5)
+
+
         return new_matrix
 
     def add_small_distance_to_nearby_nodes(self, shape_map_human, distance_matrix, verbose=False):

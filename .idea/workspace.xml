@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Untitled.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classic_som.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classic_som.py" beforeDir="false" afterPath="$PROJECT_DIR$/classic_som.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Untitled1.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/som_graph.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/som_graph.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graph_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="228" selection-start-line="228" selection-end-line="228" />
+            <state relative-caret-position="20">
+              <caret line="211" column="44" lean-forward="true" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -86,8 +85,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1181" />
-    <option name="y" value="279" />
+    <option name="x" value="299" />
+    <option name="y" value="90" />
     <option name="width" value="1317" />
     <option name="height" value="857" />
   </component>
@@ -195,12 +194,12 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="58361000" />
+      <workItem from="1561842895958" duration="60433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112144000" />
+    <option name="totallyTimeSpent" value="114216000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -212,7 +211,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1181" y="279" width="1317" height="857" extended-state="0" />
+    <frame x="299" y="90" width="1317" height="857" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1355398" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -371,8 +371,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graph_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="228" selection-start-line="228" selection-end-line="228" />
+        <state relative-caret-position="20">
+          <caret line="211" column="44" lean-forward="true" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
