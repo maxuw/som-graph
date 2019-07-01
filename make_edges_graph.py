@@ -58,19 +58,6 @@ shape_map_human = \
 
 special_shape_map
 
-list_zeros = []
-counter = 0
-for i in range(len(special_shape_map)):
-    for j in range(len(special_shape_map[i])):
-        print(i, j)
-        if special_shape_map[i][j] == 1:
-            if counter != 0:
-                list_zeros.append(counter)
-                print("adding :", counter)
-            counter = 0
-        else:
-            counter += 1
-
 list_zeros.append(2)
 
 list_zeros
@@ -235,95 +222,73 @@ map1.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 plt.rcParams['figure.dpi'] = 150
 map1.draw_all(drawtype, labels=labels)
 
-map1.history_classifications
+list_zeros = []
+counter = 0
+for i in range(len(special_shape_map)):
+    for j in range(len(special_shape_map[i])):
+        print(i, j)
+        if special_shape_map[i][j] == 1:
+            if counter != 0:
+                list_zeros.append(counter)
+                print("adding :", counter)
+            counter = 0
+        else:
+            counter += 1
 
-map1.draw_all(drawtype="networkx", labels=labels)
+map1.history_classifications
 
 shape_map_human
 
 
-# +
-def go_through_map(map_, matrix_distances):
+def look_around(location_vertical, location_horizontal, direction, map_):
+    print(location_vertical, location_horizontal)
+    search_ = search(location_vertical, location_horizontal, direction, map_)
+    if search_ != None and search_ != False :
+        print("search object :", search_)
+        length = get_node(location_vertical * len(map_[0]) + location_horizontal, map_)
+#                         print("go_through_map", i * len(map_[0]) + j)
+#                         print(length)
+#                         print("search: ", search_)
+        width = get_node(search_, map_)
+        print("go_through_map", search_)
+#                         print(width)
+        graph1.add_edge(matrix_distances, length, width, 0.25)
+        if length != width:
+            print("adding edge ", length, width)
+
+
+look_around(0, 2, "r", shape_map_human)
+
+
+def look_around(map_, matrix_distances, matrix_distances):
     directions = ["l", "u", "r", "b"]
     
     for i in range(len(shape_map_human)):
         for j in range(len(shape_map_human[i])):
             if map_[i][j] == 1:
+
+
+# +
+def look_around(location_vertical, location_horizontal, map_):
+    directions = ["l", "u", "r", "b"]
+    
+    for direction in directions:
+        search(location_vertical, location_horizontal, direction, map_)
+        
                 
-                for direction in directions:
-                    print(i, j)
-                    search_ = search(i, j, direction, map_)
-                    if search_ != None and search_ != False :
-                        print("search object :", search_)
-                        length = get_node(i * len(map_[0]) + j, map_)
-#                         print("go_through_map", i * len(map_[0]) + j)
-#                         print(length)
-#                         print("search: ", search_)
-                        width = get_node(search_, map_)
-                        print("go_through_map", search_)
-#                         print(width)
-                        graph1.add_edge(matrix_distances, length, width, 0.25)
-                        if length != width:
-                            print("adding edge ", length, width)
+
                     
                     
 # -
 
+look_around(1, 6, shape_map_human)
 
 
-def 
+
+search(7, 3, "b", shape_map_human)
 
 
-search(0, 0, "b", shape_map_human)
-
-
-def search(location_vertical, location_horizontal, direction, map_):
-    if direction == "l":
-        if location_horizontal > 0:
-            if map_[location_vertical][location_horizontal-1] == 1:
-                ret = location_vertical * len(map_[0]) + location_horizontal-1
-                print("searching left ", ret)
-                return ret
-            else:
-                return False
-        else:
-            return False
-    elif direction == "u":
-        if location_vertical > 0:
-            if map_[location_vertical-1][location_horizontal] == 1:
-                ret = location_vertical-1 * len(map_[0]) + location_horizontal
-                print("searching up ", ret)
-                return ret
-            else:
-                return False
-        else:
-            return False
-        
-    elif direction == "r":
-        if location_horizontal < len(map_[0]):
-            if map_[location_vertical][location_horizontal-1] == 1:
-                ret = location_vertical  * len(map_[0]) + location_horizontal-1
-                print("searching right ", ret)
-                return ret
-            else:
-                return False
-        else:
-            return False
-        
-    elif direction == "b":
-        if location_vertical < len(map_) -1:
-            if map_[location_vertical+1][location_horizontal] == 1:
-                ret = location_vertical+1 * len(map_[0]) + location_horizontal
-                print("searching bottom ", ret)
-                return 
-            else:
-                return False
-        else:
-            return False
-    else:
-        return "brak kierunku"
-
-
+# given location on the map returns the node of the graph
 def get_node(location_map, map_):
 #     print("location map:", location_map)
     row = int(location_map / len(map_[0]))
@@ -355,8 +320,11 @@ human_matrix = graph1.create_matrix(56)
 
 human_matrix[0:5]
 
-go_through_map(shape_map_human, human_matrix)
+# +
+# go_through_map(shape_map_human, human_matrix)
 
-human_matrix[0:5]
+# +
+# human_matrix[0:5]
+# -
 
 

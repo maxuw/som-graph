@@ -266,7 +266,8 @@ class MapClass:
 
                 tens_try = self.history[history_number].view(self.length, self.width, 3)
                 plt.imshow(tens_try)
-
+                self.add_lables(history_number, labels)
+                plt.show()
 
 
 

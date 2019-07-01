@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # ---
 # jupyter:
 #   jupytext:
@@ -56,53 +57,28 @@ shape_map_human = \
     [0,0,1,0,1,0,0]]
 
 
-special_shape_map
-
-rgb_colors = [[0., 0., 0.],
-      [0., 0., 1.],
-      [0., 0., 0.5],
-      [0.125, 0.529, 1.0],
-      [0.33, 0.4, 0.67],
-
-map1.find_bmu(torch.tensor([0., 0., 0.]))
-
-map1.find_bmu(torch.tensor([1., 1., 1.]))
-
-count zeros between beginning and 6'th element
-
-list_zeros = []
-counter = 0
-for i in range(len(special_shape_map)):
-    for j in range(len(special_shape_map[i])):
-        print(i, j)
-        if special_shape_map[i][j] == 1:
-
-
-def count_till_number(num):
-    counter_1 = 0
-    counter_0 = 0
-    for i in range(len(special_shape_map)):
-        for j in range(len(special_shape_map[i])):
-#             print(i, j)
-            
-            if special_shape_map[i][j] == 1:
-                
-                print(counter_1)
-                if counter_1 == num:
-                    print("return")
-                    return counter_0 + counter_1
-                counter_1 += 1
-            else:
-                counter_0 += 1
-
-
-count_till_number(1)#white 45
-
-map1.location_special_map(0)
-
-[map1.location_special_map(x) for x in map1.history_classifications[0]]
-
-map1.history_classifications[1]
+shape_map_human_2 = \
+    [
+    [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+    [0,0,1,1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+    [0,0,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0],
+    [0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0],
+    [0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
+    [0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+    [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+    [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0],
+    [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,0,1,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0]]
 
 # +
 # Network configuration
@@ -110,14 +86,14 @@ map1.history_classifications[1]
 data = rgb_colors
 data_lables = rgb_lables
 batch_size = 2
-special_shape_map = shape_map_human
+special_shape_map = None
 
 
 sigma = None
 
 # for now amount_verticies has to be a multiplication of length and width
-length = 8
-width = 7
+length = 10
+width = 10
 number_epochs = 1000
 shuffle = True
 
@@ -145,7 +121,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 # -
 
 # for now amount_verticies has to be a multiplication of length and width
-amount_nodes = 25
+amount_nodes = 100
 percent_edges = 0.2
 
 # +
@@ -162,8 +138,6 @@ matrix1 = graph1.add_edges(matrix1, edges1)
 list_edges = graph1.make_list_edges_distances(matrix1)
 netxgraph1 = graph1.build_networkx_graph(list_edges)
 # -
-
-human_matrix = graph1.create_matrix(56)
 
 
 
@@ -216,6 +190,54 @@ map1.large_cycle(draw_every_epoch=100, drawtype=drawtype)
 plt.rcParams['figure.dpi'] = 150
 map1.draw_all(drawtype, labels=labels)
 
-map1.history_classifications
-
 map1.draw_all(drawtype="networkx", labels=labels)
+
+
+
+special_shape_map = shape_map_human_2
+
+amount_nodes = graph1.count_ones(special_shape_map)
+amount_nodes
+
+matrix_human = graph1.create_matrix(amount_nodes)
+
+# +
+# matrix_human[0]
+# -
+
+graph1.look_around(1,6, shape_map_human)
+
+# +
+# graph1.connect_with_around(2, shape_map_human, matrix_human)
+
+# +
+# def add_small_distance_to_nearby_nodes(shape_map_human, distance_matrix):
+#     for i in range(len(distance_matrix)):
+#         graph1.connect_with_around(i, shape_map_human, distance_matrix)
+# -
+
+new_matrix = graph1.add_small_distance_to_nearby_nodes(special_shape_map, matrix_human)
+
+length = 20
+width = 20
+sigma = 0.5
+
+map2 = MapClass(data, length, width, learning_rate, number_epochs, new_matrix,
+                sigma, data_lables, batch_size, shuffle, netxgraph1, special_shape_map)
+
+labels=True
+drawtype = "rbg"
+
+# +
+# Going through a large cycle combining of number of iteration whole cycles
+
+map2.large_cycle(draw_every_epoch=100, drawtype=drawtype)
+# -
+
+# Drawing all the history
+plt.rcParams['figure.dpi'] = 150
+map2.draw_all(drawtype, labels=labels)
+
+# Na razie generaltor wag generuje je tylko do najbliższych pól. Gdyby generował dalej mapa działałaby lepiej, ale ktoś może sobie wgrać dowolną mapę z wagami.
+
+

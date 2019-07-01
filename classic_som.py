@@ -116,7 +116,7 @@ netxgraph2 = graph2.build_networkx_graph(list_edges)
 
 
 
-map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix2, sigma, data_lables, batch_size, shuffle, netxgraph2)
+map1 = MapClass(data, length, width, learning_rate, number_epochs, matrix2, sigma, data_lables, batch_size, shuffle, netxgraph2, special_shape_map)
 
 # +
 # ### Drawing configuration
