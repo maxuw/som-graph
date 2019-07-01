@@ -12,7 +12,7 @@ class Graph:
 
     def create_matrix(self, amount_nodes):
         # jn
-        matrix_graph_weights = torch.empty(amount_nodes, amount_nodes)
+        matrix_graph_weights = torch.ones(amount_nodes, amount_nodes)
         for i in range(amount_nodes):
             for j in range(amount_nodes):
                 matrix_graph_weights[i][j] = 0 if i == j else 1
