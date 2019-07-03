@@ -48,9 +48,15 @@ class Graph:
         for i in range(len(matrix)):
             for j in range(len(matrix)):
                 if j != i and not j>i:
-                    list_elem = [i, j, matrix[i][j].item()]
-        #             print(list_elem)
-                    list_edges_weights.append(tuple(list_elem))
+
+                    # print(matrix[i][j].item())
+                    if matrix[i][j].item() < 1:
+
+
+                        list_elem = [i, j, matrix[i][j].item()]
+            #             print(list_elem)
+                        list_edges_weights.append(tuple(list_elem))
+
         return list_edges_weights
 
     @staticmethod
