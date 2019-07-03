@@ -121,7 +121,7 @@ gray_colors_lables = [[0.1], ["black"], ["white"], [0.125], [0.529], [0.9], [0.3
 
 # for now amount_verticies has to be a multiplication of length and width
 amount_nodes = 6
-percent_edges = 0.01
+percent_edges = 0.4
 
 # +
 # using graph class to generate matrix
@@ -136,13 +136,7 @@ edges1 = graph1.generate_edges(amount_nodes, percent_edges)
 matrix1 = graph1.add_edges(matrix1, edges1)
 list_edges = graph1.make_list_edges_distances(matrix1)
 netxgraph1 = graph1.build_networkx_graph(list_edges)
-# -
-matrix1
-
-
-list_edges
-
-# +
+# + {}
 # matrix1
 
 # +
