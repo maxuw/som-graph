@@ -391,8 +391,15 @@ class MapClass:
             for i in range(len(classification)):
                 labels[classification[i]] = self.data_lables[i]
 
+            if self.amount_nodes < 20:
+                node_size = 5000/(self.amount_nodes)
+
+            else:
+                node_size = 100000 / (self.amount_nodes)
+
+
             print("plot of state: ", j)
-            nx.draw(nx_graph, pos=pos, node_size=(100000/(self.amount_nodes)), with_labels=False)
+            nx.draw(nx_graph, pos=pos, node_size=node_size, with_labels=False)
             nx.draw_networkx_labels(nx_graph, pos, labels)
             plt.draw()
             plt.show()

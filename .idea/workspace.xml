@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e9c765-0f87-47aa-86ee-cb4e9df37ca6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Untitled1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Untitled1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/som_graph.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/som_graph.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/map_class.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,44 +13,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-353">
-              <caret line="268" column="55" selection-start-line="268" selection-start-column="55" selection-end-line="268" selection-end-column="55" />
+            <state relative-caret-position="380">
+              <caret line="394" column="29" selection-start-line="394" selection-start-column="29" selection-end-line="394" selection-end-column="29" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/graph_class.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="211" column="44" lean-forward="true" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/torch/lib/python3.7/site-packages/torch/tensor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="417" selection-start-line="417" selection-end-line="417" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Untitled1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -79,8 +48,8 @@
         <option value="$PROJECT_DIR$/map.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/map_graph_class.py" />
-        <option value="$PROJECT_DIR$/map_class.py" />
         <option value="$PROJECT_DIR$/graph_class.py" />
+        <option value="$PROJECT_DIR$/map_class.py" />
       </list>
     </option>
   </component>
@@ -194,12 +163,13 @@
       <workItem from="1561414670339" duration="21195000" />
       <workItem from="1561585533260" duration="27710000" />
       <workItem from="1561814361374" duration="4878000" />
-      <workItem from="1561842895958" duration="60433000" />
+      <workItem from="1561842895958" duration="61036000" />
+      <workItem from="1562154751932" duration="397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114216000" />
+    <option name="totallyTimeSpent" value="115216000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -214,13 +184,13 @@
     <frame x="299" y="90" width="1317" height="857" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1355398" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13790385" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3219927" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.21655172" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.49931034" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.49931034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.1724138" />
@@ -233,8 +203,8 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.5123967" visible="true" weight="0.085894406" />
-      <window_info anchor="right" x="0" y="0" width="323" height="738" id="Documentation" order="4" sideWeight="0.4876033" side_tool="true" visible="true" weight="0.085894406" />
+      <window_info active="true" anchor="right" id="SciView" order="3" sideWeight="0.49655172" visible="true" weight="0.085894406" />
+      <window_info anchor="right" x="0" y="0" width="323" height="738" id="Documentation" order="4" sideWeight="0.50344825" side_tool="true" visible="true" weight="0.085894406" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
   </component>
@@ -299,11 +269,6 @@
           <line>352</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Untitled1.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -321,44 +286,21 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/map.py" />
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
-          <folding>
-            <element signature="e#295#307#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py" />
     <entry file="file://$PROJECT_DIR$/map_graph_class.py" />
-    <entry file="file://$PROJECT_DIR$/colors_3d.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/colors_3d.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="103" selection-start-line="103" selection-end-line="103" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/colors_3d.ipynb" />
+    <entry file="file://$PROJECT_DIR$/colors_3d.py" />
     <entry file="file://$PROJECT_DIR$/som_graph.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/map_class.py">
+    <entry file="file://$PROJECT_DIR$/Untitled1.py" />
+    <entry file="file://$PROJECT_DIR$/graph_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-353">
-          <caret line="268" column="55" selection-start-line="268" selection-start-column="55" selection-end-line="268" selection-end-column="55" />
+        <state relative-caret-position="295">
+          <caret line="211" column="44" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Untitled1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
@@ -369,10 +311,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graph_class.py">
+    <entry file="file://$PROJECT_DIR$/map_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="211" column="44" lean-forward="true" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
+        <state relative-caret-position="380">
+          <caret line="394" column="29" selection-start-line="394" selection-start-column="29" selection-end-line="394" selection-end-column="29" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
